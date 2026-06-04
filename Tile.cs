@@ -21,7 +21,7 @@ namespace catan
             Center = center;
             Neighbours = new List<Tile>();
             Probabilty = probabilty;
-            Console.WriteLine("..bla bla .");
+            // Console.WriteLine("..bla bla .");
         }
 
         

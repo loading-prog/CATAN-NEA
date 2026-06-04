@@ -282,6 +282,34 @@ namespace catan
 
             }
         }
+        public class settlemet
+        {
+            public void DrawSettlemnt(object sender, PaintEventArgs e)
+            {
+                Pen p = new Pen(Color.Black);
+                Brush brushBlack = new SolidBrush(Color.Black);
+                Brush brushBlue = new SolidBrush(Color.LightBlue);
+                Brush brushsheep = new SolidBrush(Color.LightGreen);
+                Brush brushbrick = new SolidBrush(Color.DarkRed);
+                Brush brushtree = new SolidBrush(Color.DarkOliveGreen);
+                Brush brushrock = new SolidBrush(Color.Gray);
+                Brush brushwheat = new SolidBrush(Color.Yellow);
+                Brush brushdesert = new SolidBrush(Color.LightYellow);
 
+                Graphics g = e.Graphics;
+
+                int startx = 20;
+                int starty = 50;
+
+                // g.DrawRectangle(p,startx-3,starty,16,20);
+                g.FillRectangle(brushBlack, startx - 2, starty, 20, 12);
+                g.FillRectangle(brushwheat, startx, starty, 16, 11);
+
+                //g.FillPolygon(brushBlack, [startx + 16, starty + 12], [startx + 8, starty + 20], [startx,starty+12]);
+
+
+
+            }
+        }
     }
 }
