@@ -16,6 +16,10 @@ namespace catan
         public int total;
         public int rootx = 1600;
         public int rooty = 600;
+        public Dice()
+        {
+           // Dice.DiceResult(Result);
+        }
         public void roll()
         {
             Dice1Value = rand.Next(1, 7);

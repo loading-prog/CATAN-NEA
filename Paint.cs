@@ -282,7 +282,7 @@ namespace catan
 
             }
         }
-        public class settlemet
+        public class settlement
         {
             public void DrawSettlemnt(object sender, PaintEventArgs e)
             {

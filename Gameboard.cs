@@ -254,6 +254,8 @@ namespace catan
             AdjustUniquePoints();
         }
         //Console.WriteLine(Tiles);
+        //Console.WriteLine(FindingNeighbour)
+
     }
 }
 
