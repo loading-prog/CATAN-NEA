@@ -29,7 +29,7 @@ namespace catan
         MasterPaint.Utils utils;
         Dice Dice;
         MasterPaint.Menu Menu;
-
+        Theif Theif;
         public Form1()
         {
             Dice = new Dice();
