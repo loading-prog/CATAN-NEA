@@ -30,12 +30,14 @@ namespace catan
         Dice Dice;
         MasterPaint.Menu Menu;
         Theif Theif;
-        public Form1()
+        public Form1(bool isLoading)
         {
+
+            Theif = new Theif();
             Dice = new Dice();
             InitializeComponent();
             this.DoubleBuffered = true;
-
+            SetupPlayers();
             this.Paint += form1_paint;
             this.Click += Form1_Click;
             utils = new MasterPaint.Utils();
@@ -54,7 +56,25 @@ namespace catan
             MenuButton.Click += MenuButton_Click;
             this.Controls.Add(MenuButton);
         }
+        public void SetupPlayers() //delete this later - for testing purposes 
+        {
+            List<Player> initialPlayers = new List<Player>
+{
+    new Player("Alice"),
+    new Player("Bob"),
+    new Player("Charlie")
 
+};
+            foreach (Player player in initialPlayers)
+            {
+                // Add the player to the game or perform any necessary setup
+
+                MessageBox.Show($"Player {player.Username} has been set up and added to the database.");
+
+             DataBaseHelper.InsertPlayer(player);
+
+            }
+        }
         private void MenuButton_Click(object? sender, EventArgs e)
         {
 
