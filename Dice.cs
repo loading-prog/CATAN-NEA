@@ -18,7 +18,7 @@ namespace catan
         public int rooty = 600;
         public Dice()
         {
-           // Dice.DiceResult(Result);
+           //* Dice.DiceResult(Result);
         }
         public void roll()
         {

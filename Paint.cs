@@ -46,7 +46,6 @@ namespace catan
             //{
             //    //number them from top left, working clockwise, 1-6
             //   //witch(cornerWanted)
-
             //    return null;
             //}
 
@@ -306,8 +305,6 @@ namespace catan
                 g.FillRectangle(brushwheat, startx, starty, 16, 11);
 
                 //g.FillPolygon(brushBlack, [startx + 16, starty + 12], [startx + 8, starty + 20], [startx,starty+12]);
-
-
 
             }
         }

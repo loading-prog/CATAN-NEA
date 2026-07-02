@@ -1,3 +1,4 @@
+
 namespace catan
 {
     internal static class Program
@@ -10,8 +11,9 @@ namespace catan
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+            //Batteries.Init();
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new StartMenu());
         }
     }
 }

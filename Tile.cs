@@ -13,7 +13,6 @@ namespace catan
         public Point Center { get; set; }
         public string Probabilty { get; set; }
         public List<Tile> Neighbours { get; set; }
-
         public Tile(int id, string type, Point center, string probabilty)
         {
             Id = id;
