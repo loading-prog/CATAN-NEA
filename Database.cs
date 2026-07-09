@@ -18,7 +18,7 @@ namespace catan
 
         public static void initializeDataBase()
         {
-            Console.WriteLine("Hello 1234 ");
+            Console.WriteLine("Hello 1234 sdfgzfdg");
             using (var connection = new SqliteConnection(connectingString))
             {
                 connection.Open();
