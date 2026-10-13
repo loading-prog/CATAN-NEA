@@ -6,6 +6,25 @@ using System.Threading.Tasks;
 
 namespace catan
 {
+    class Edge
+    {
+        public Tile tile;
+        public Point point1;
+        public Point point2;
+    
+         
+
+        public Edge(Tile t, Point p1, Point p2)
+        {
+            this.tile = t;
+            this.point1 = p1;
+            this.point2 = p2;
+
+        }
+    }
+    //Job 1 - 
+
+
     class Tile //a node 
     {
         public int Id { get; set; }
@@ -14,6 +33,7 @@ namespace catan
         public string Probabilty { get; set; }
         public List<Tile> Neighbours { get; set; }
 
+        public List<Edge> Edges { get; set; }   
         public Tile(int id, string type, Point center, string probabilty)
         {
             Id = id;

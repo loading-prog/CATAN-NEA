@@ -8,10 +8,13 @@ namespace catan
 {
     class Gameboard
     {
-         
-        //the actual tile
-        
+        public Gameboard()
+        {
 
+        }
+        
+        
+        //the actual tile
 
         //tiletype
         List<string> tileTypes = new List<string>

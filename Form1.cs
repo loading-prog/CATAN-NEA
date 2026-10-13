@@ -25,25 +25,31 @@ namespace catan
         public bool checkrolling = false;
         Button MenuButton;
 
-        private Gameboard board;
         MasterPaint.Utils utils;
         Dice Dice;
         MasterPaint.Menu Menu;
         Theif Theif;
-        public Form1()
+        
+
+        CatanGameManager gameManager;
+        public Form1(bool isLoading)
         {
-            Dice = new Dice();
+            gameManager = new CatanGameManager(); //create a new blank game 
+         // DataBaseHelper.initializeDataBase();
+           // Theif = new Theif();
+    
             InitializeComponent();
             this.DoubleBuffered = true;
-
+            //SetupPlayers();
             this.Paint += form1_paint;
             this.Click += Form1_Click;
             utils = new MasterPaint.Utils();
-            board = new Gameboard();
+           
             Menu = new MasterPaint.Menu();
-            board.DrawBoard();
+            gameManager.Board.DrawBoard();
+            
 
-            maxHexes = board.Tiles.Count;
+            maxHexes = gameManager.Board.Tiles.Count;
         }
         public void InitialiseButtons()
         {
@@ -54,7 +60,25 @@ namespace catan
             MenuButton.Click += MenuButton_Click;
             this.Controls.Add(MenuButton);
         }
+        public void SetupPlayers() //delete this later - for testing purposes 
+        {
+/*            List<Player> initialPlayers = new List<Player>
+            {
+                new Player("Alice"),
+                new Player("Bob"),
+                new Player("Charlie")
 
+            };
+            foreach (Player player in initialPlayers)
+            {
+                // Add the player to the game or perform any necessary setup
+
+                MessageBox.Show($"Player {player.Username} has been set up and added to the database.");
+
+                DataBaseHelper.InsertPlayer(player);
+
+            }*/
+        }
         private void MenuButton_Click(object? sender, EventArgs e)
         {
 
@@ -65,9 +89,9 @@ namespace catan
             MouseEventArgs mouse = (MouseEventArgs)e;
 
             int i = 0;
-            while (i < board.UniquePoints.Count)
+            while (i < gameManager.Board.UniquePoints.Count)
             {
-                Point p = board.UniquePoints[i];
+                Point p = gameManager.Board.UniquePoints[i];
                 int radius = 15;
                 if (mouse.X >= p.X - radius && mouse.X <= p.X + radius && mouse.Y >= p.Y - radius && mouse.Y <= p.Y + radius)
                 {
@@ -101,8 +125,15 @@ namespace catan
                 if (mouse.X >= 1800 && mouse.X <= 1900 && mouse.Y >= 800 && mouse.Y <= 900)
                 {
                     Dicecheck = true;
-                    Dice.roll();
-                    this.Invalidate();
+                    if(Dice == null)
+                    {
+                        MessageBox.Show("ERROR : Dice object is NULL!");
+                    }
+                    else
+                    {
+                        gameManager.Dice.roll();
+                    }
+                        this.Invalidate();
                 }
             }
         }
@@ -113,7 +144,7 @@ namespace catan
 
 
             updateTimer = new System.Windows.Forms.Timer();
-            updateTimer.Interval = 450;
+            updateTimer.Interval = 40;
             updateTimer.Tick += UpdateTimer_Tick;
             updateTimer.Start();
         }
@@ -143,11 +174,11 @@ namespace catan
             g.FillRectangle(brushBoard, 400, 90, 1050, 730);
             g.FillRectangle(bushSea, 415, 105, 1020, 700);
 
-            if (board == null) return;
+            if (gameManager.Board == null) return;
 
             for (int i = 0; i < hexesToDraw; i++)
             {
-                board.Tiles[i].Paint(e,utils: utils);
+                gameManager.Board.Tiles[i].Paint(e,utils: utils);
             }
 
             //Menu 
@@ -166,28 +197,28 @@ namespace catan
                     Menu.CoverUp(g);
                 }
                 //Dice
+            }
 
-                if (maxHexes == hexesToDraw)
+            if (maxHexes == hexesToDraw)
+            {
+                gameManager.Dice.StartButton(sender, e);
+                gameManager.Dice.DiceFace(sender, e);
+                gameManager.Dice.ActualDiceResult(sender, e);
+            }
+
+            if (Dicecheck == true && MenuCheck == false)
+            {
+                checkrolling = true;
+                gameManager.Dice.MidRoll(sender, e);
+                //Dice.roll();
+                gameManager.Dice.DiceFace(sender, e);
+                for (int i = 0; i < 3; i++)
                 {
-                    Dice.StartButton(sender, e);
-                    Dice.DiceFace(sender, e);
                     Dice.ActualDiceResult(sender, e);
                 }
-
-                if (Dicecheck == true && MenuCheck == false)
-                {
-                    checkrolling = true;
-                    Dice.MidRoll(sender, e);
-                    Dice.roll();
-                    Dice.DiceFace(sender, e);
-                    for (int i = 0; i < 3; i++)
-                    {
-                        Dice.ActualDiceResult(sender, e);
-                    }
-                    Dicecheck = false;
-                    checkrolling = false;
-                    Dice.StartButton(sender, e);
-                }
+                Dicecheck = false;
+                checkrolling = false;
+                gameManager.Dice.StartButton(sender, e);
             }
         }
     }
