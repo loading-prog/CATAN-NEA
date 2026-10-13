@@ -16,11 +16,11 @@ namespace catan
         Board = new Gameboard();
             Dice = new Dice();
             Players = new List<Player>();
-            Players.Add(new Player(1, "dave", Color.Red));
+            //Players.Add(new Player(1, "dave", Color.Red));
 
-            Players.Add(new Player(2, "bob", Color.Green));
+            //Players.Add(new Player(2, "bob", Color.Green));
 
-            Players.Add(new Player(3, "alice", Color.Blue));
+            //Players.Add(new Player(3, "alice", Color.Blue));
         }
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace catan
 {
-    class Player
+    /*class Player
     {
         public int id;
         public string name;
@@ -14,10 +14,12 @@ namespace catan
 
         public Player(int id, string name, Color color)
         {
-
+            this.id = id;
+            this.name = name
+            this,Color = Color;
 
         }
 
 
-    }
+    }*/
 }

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static catan.Database;
+//using static catan.Database;
 
 namespace catan
 {
@@ -16,21 +16,21 @@ namespace catan
     {
         public MainMenu()
         {
-            DataBaseHelper.initializeDataBase();
+            //DataBaseHelper.initializeDataBase();
             InitializeComponent();
 
         }
 
         private void btnCreatePlayer_Click(object sender, EventArgs e)
         {
-            //this.btnCreatePlayer.Enabled = true;
+            this.btnCreatePlayer.Enabled = true;
 
 
-            // Add pop up selection choice. Input choice. 
+            //Add pop up selection choice. Input choice. 
 
             //PlayerCreation playerCreation = new PlayerCreation(true);
             //playerCreation.Show();
-            //this.Hide();
+            this.Hide();
 
 
             int PlayerID = 0;
@@ -40,25 +40,25 @@ namespace catan
             int TotalLosses = 0;
             DateTime CreationDate = DateTime.Now;
 
-            Database.DataBaseHelper.AddPlayer(PlayerID, Username, TotalGamesPlayed, TotalWins, TotalLosses, CreationDate);
+            //Database.DataBaseHelper.AddPlayer(PlayerID, Username, TotalGamesPlayed, TotalWins, TotalLosses, CreationDate);
 
             MessageBox.Show("Player Has been Created.");
             // public void SetupPlayers() //delete this later - for testing purposes 
-            /*            List<Player> initialPlayers = new List<Player>
+            List<Player> initialPlayers = new List<Player>
                         {
                             new Player("Alice"),
                             new Player("Bob"),
                             new Player("Charlie")
 
                         };
-                        foreach (Player player in initialPlayers)
-                        {
-                            // Add the player to the game or perform any necessary setup
+            foreach (Player player in initialPlayers)
+            { 
+                 //Add the player to the game or perform any necessary setup
 
-                            MessageBox.Show($"Player {player.Username} has been set up and added to the database.");
+                MessageBox.Show($"Player {player.Username} has been set up and added to the database.");
 
-                            DataBaseHelper.InsertPlayer(player);
-                        }*/
+                //DataBaseHelper.InsertPlayer(player);
+            }
         }
 
         private void btnStartGame_Click(object sender, EventArgs e)
