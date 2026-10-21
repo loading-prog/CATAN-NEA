@@ -6,6 +6,7 @@ namespace catan
     {
         public int PlayerID { get; set; }
         public string Username { get; set; }
+        public Color PlayerColour { get; set; }
         public int TotalGamesPlayed { get; set; }
         public int TotalWins { get; set; }
         public int TotalLosses { get; set; }

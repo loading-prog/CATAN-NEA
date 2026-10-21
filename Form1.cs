@@ -44,17 +44,21 @@ namespace catan
             gameManager = new CatanGameManager();
             gameManager.Board.DrawBoard();
             gameManager.Board.FindingNeighbour();
+            gameManager.Board.FindingBuildingPoints();
             gameManager.Dice.roll();
+
+            /*Testing BuidlingPoints & if it finds all intersections
+            MessageBox.Show("Building locations found: " + gameManager.Board.BuildingPoints.Count); = Success/ Expected Outcome */ 
 
             /*Testing if the Turn System works
             string TurnTest = "";
-            for(int i =0; i <3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 TurnTest += gameManager.Players[gameManager.CurrentPlayerIndex].Username + "\n";
                 gameManager.NextTurn();
             }
             TurnTest += gameManager.Players[gameManager.CurrentPlayerIndex].Username;
-            MessageBox.Show(TurnTest); */
+            MessageBox.Show(TurnTest); = Success/Expected Outcome */
 
             /*Testing If Tile.FindNeighours actually works
 
@@ -80,7 +84,7 @@ namespace catan
                     }
                 }
             }
-            MessageBox.Show("Neighbour errors" + errors);*/
+            MessageBox.Show("Neighbour errors" + errors); = Success / Expected Outcome*/
 
 
             maxHexes = gameManager.Board.Tiles.Count;
@@ -191,7 +195,38 @@ namespace catan
             g.FillRectangle(brushBoard, 400, 90, 1050, 730);
             g.FillRectangle(bushSea, 415, 105, 1020, 700);
 
-            if (gameManager.Board == null) return;
+            for (int i = 0; i < gameManager.Players.Count; i++)
+            {
+                int Panelx = 1500;
+                int Panely = 100 + (i * 100);
+                int panelWidth = 350;
+                int PanelHight = 85;
+
+                using Brush Parchment = new SolidBrush(Color.Bisque);
+                using Brush PlayerBrush = new SolidBrush(gameManager.Players[i].PlayerColour);
+                using Font PlayerFont = new Font("Georgia", 15, FontStyle.Bold);
+
+                Color BorderColour = Color.SaddleBrown;
+                int BorderWidth = 3;
+
+                if (i == gameManager.CurrentPlayerIndex)
+                {
+                    BorderColour = Color.Goldenrod;
+                    BorderWidth = 3;
+                }
+                
+                using Pen Border = new Pen(BorderColour, BorderWidth);
+
+                g.FillRectangle(Parchment, Panelx, Panely, panelWidth, PanelHight);
+                g.DrawRectangle(Border, Panelx,Panely, panelWidth, PanelHight);
+
+                g.FillRectangle(PlayerBrush, Panelx + 12, Panely + 12, 20, 60);
+
+                g.DrawString(gameManager.Players[i].Username, PlayerFont, Brushes.SaddleBrown, Panelx + 45, Panely + 24);
+            }
+
+
+                if (gameManager.Board == null) return;
 
             for (int i = 0; i < hexesToDraw; i++)
             {

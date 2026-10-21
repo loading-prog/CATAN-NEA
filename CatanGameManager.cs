@@ -24,6 +24,10 @@ namespace catan
             Players.Add(new Player(2, "bob", 0, 0, 0, DateTime.Now)); // , Color.Green));
 
             Players.Add(new Player(3, "alice", 0, 0, 0, DateTime.Now)); //, Color.Blue));
+
+            Players[0].PlayerColour = Color.Red;
+            Players[1].PlayerColour = Color.Blue;
+            Players[2].PlayerColour = Color.Orange;
         }
 
 
