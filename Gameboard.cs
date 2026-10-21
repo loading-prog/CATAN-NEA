@@ -23,7 +23,7 @@ namespace catan
         "brick","brick","brick",
         "tree","tree","tree","tree",
         "rock","rock","rock",
-        "wheat","wheat","wheat","wheat","wheat",
+        "wheat","wheat","wheat","wheat",
         "desert"
     };
         Random random = new Random();
@@ -34,14 +34,14 @@ namespace catan
     {
         //19 total tiles, 18 with numbers, 1 desert
         "2",
-        "3","3","3",
+        "3","3",
         "4","4",
         "5","5",
-        "6","6","6",
-        "8","8","8",
+        "6","6",
+        "8","8",
         "9","9",
         "10","10",
-        "11","11","11",
+        "11","11",
         "12"
     };
 
@@ -194,16 +194,15 @@ namespace catan
         // Works "Logically" not Mathmatically. Looks for a tile which is - "Good enough" and then searches the offset to see if correct.
         public void FindingNeighbour()
         {
-            int Vradius = 60;
-            int Hradius = 65;
+            int Vradius = 116;
+            int Hradius = 60;
 
 
             var neighborOffsets = new (int dx, int dy)[]
             {
-                (0, -Vradius),
-                (0,  Vradius),
-                (Hradius, 0),
-                (-Hradius, 0),
+                
+                (Hradius * 2, 0),
+                (-Hradius * 2, 0),
                 ( Hradius, -Vradius),
                 ( Hradius,  Vradius),
                 (-Hradius, -Vradius),
@@ -211,15 +210,14 @@ namespace catan
             };
 
 
-            foreach (Point center in CentreHex)
+            foreach (Tile centerTile in Tiles)
             {
+                Point center = centerTile.Center;
 
+                var neighborPoints = neighborOffsets
+                    .Select(o => new Point(center.X + o.dx, center.Y + o.dy))
+                    .ToList();
 
-                var neighborPoints = neighborOffsets.Select(o => new Point(center.X + o.dx, center.Y + o.dy)).ToList();
-
-
-                var centerTile = Tiles.FirstOrDefault(t => ArePointsClose(t.Center, center, 8));
-                if (centerTile == null) continue;
 
 
 #pragma warning disable CS8619
@@ -248,10 +246,17 @@ namespace catan
             //Shuffle probabilty for later.
             Probabilty = Probabilty.OrderBy(x => random.Next()).ToList();
 
+            int TokenIndex = 0;
             for (int i = 0; i < 19; i++)
             {
                 Point adjustedPosition = AdjustPoint(positions[i]);
-                Tiles.Add(new Tile(i, tileTypes[i], adjustedPosition, Probabilty[i]));
+                string probability = "";
+                if (tileTypes[i] != "desert")
+                {
+                    probability = Probabilty[TokenIndex];
+                    TokenIndex++;
+                }
+                Tiles.Add(new Tile(i, tileTypes[i], adjustedPosition, probability));
             }
 
             AdjustUniquePoints();

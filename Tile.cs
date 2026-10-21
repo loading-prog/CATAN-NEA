@@ -40,6 +40,7 @@ namespace catan
             Type = type;
             Center = center;
             Neighbours = new List<Tile>();
+            Edges = new List<Edge>();
             Probabilty = probabilty;
             // Console.WriteLine("..bla bla .");
         }

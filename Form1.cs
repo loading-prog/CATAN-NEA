@@ -26,7 +26,6 @@ namespace catan
         Button MenuButton;
 
         MasterPaint.Utils utils;
-        Dice Dice;
         MasterPaint.Menu Menu;
         Theif Theif;
         
@@ -34,7 +33,6 @@ namespace catan
         CatanGameManager gameManager;
         public Form1(bool isLoading)
         {
-            Dice = new Dice();
             InitializeComponent();
             this.DoubleBuffered = true;
 
@@ -45,7 +43,45 @@ namespace catan
             Menu = new MasterPaint.Menu();
             gameManager = new CatanGameManager();
             gameManager.Board.DrawBoard();
-            
+            gameManager.Board.FindingNeighbour();
+            gameManager.Dice.roll();
+
+            /*Testing if the Turn System works
+            string TurnTest = "";
+            for(int i =0; i <3; i++)
+            {
+                TurnTest += gameManager.Players[gameManager.CurrentPlayerIndex].Username + "\n";
+                gameManager.NextTurn();
+            }
+            TurnTest += gameManager.Players[gameManager.CurrentPlayerIndex].Username;
+            MessageBox.Show(TurnTest); */
+
+            /*Testing If Tile.FindNeighours actually works
+
+            string results = "";
+            foreach (Tile tile in gameManager.Board.Tiles)
+            {
+                results += tile.Id + ":" + tile.Neighbours.Count + "Neighbours\n";
+            }
+            MessageBox.Show(results);
+
+            int errors = 0; 
+            foreach(Tile tile in gameManager.Board.Tiles)
+            {
+                foreach( Tile neighbour in tile.Neighbours)
+                {
+                    if (!neighbour.Neighbours.Contains(tile))
+                    {
+                        errors++;
+                    }
+                    if (neighbour == tile)
+                    {
+                        errors++;
+                    }
+                }
+            }
+            MessageBox.Show("Neighbour errors" + errors);*/
+
 
             maxHexes = gameManager.Board.Tiles.Count;
         }
@@ -71,50 +107,51 @@ namespace catan
             int i = 0;
             while (i < gameManager.Board.UniquePoints.Count)
             {
+
                 Point p = gameManager.Board.UniquePoints[i];
                 int radius = 15;
-                if (mouse.X >= p.X - radius && mouse.X <= p.X + radius && mouse.Y >= p.Y - radius && mouse.Y <= p.Y + radius)
-                {
+                
+                if(mouse.X >= p.X - radius && mouse.X <= p.X + radius && mouse.Y >= p.Y - radius && mouse.Y <= p.Y + radius)
+                { 
                     MessageBox.Show("Clicked on tile " + i);
                     break;
                 }
                 i++;
+            }
 
+            //Menu click 
+            if (mouse.X >= 10 && mouse.X <= 85 && mouse.Y >= 10 && mouse.Y <= 85)
+            {
+                CountSystem += 1;
 
-                //Menu click
-                if (mouse.X >= 10 && mouse.X <= 85 && mouse.Y >= 10 && mouse.Y <= 85)
+                if (CountSystem == 1)
                 {
-                    CountSystem += 1;
-
-                    if (CountSystem == 1)
-                    {
-                        MenuCheck = true;
-                        this.Invalidate();
-
-                    }
-                    if (CountSystem == 2)
-                    {
-                        MenuCheck = false;
-                        this.Invalidate();
-                        CountSystem = 0;
-                    }
+                    MenuCheck = true;
+                    this.Invalidate();
 
                 }
-
-                //Dice click
-                if (mouse.X >= 1800 && mouse.X <= 1900 && mouse.Y >= 800 && mouse.Y <= 900)
+                if (CountSystem == 2)
                 {
-                    Dicecheck = true;
-                    if(Dice == null)
-                    {
-                        MessageBox.Show("ERROR : Dice object is NULL!");
-                    }
-                    else
-                    {
-                        gameManager.Dice.roll();
-                    }
-                        this.Invalidate();
+                    MenuCheck = false;
+                    this.Invalidate();
+                    CountSystem = 0;
                 }
+
+            }
+
+            //Dice click
+            if (mouse.X >= 1800 && mouse.X <= 1900 && mouse.Y >= 800 && mouse.Y <= 900)
+            {
+                Dicecheck = true;
+                if(gameManager.Dice == null)
+                {
+                    MessageBox.Show("ERROR : Dice object is NULL!");
+                }
+                else
+                {
+                    gameManager.Dice.roll();
+                }
+                    this.Invalidate();
             }
         }
 
@@ -194,7 +231,7 @@ namespace catan
                 gameManager.Dice.DiceFace(sender, e);
                 for (int i = 0; i < 3; i++)
                 {
-                    Dice.ActualDiceResult(sender, e);
+                    gameManager.Dice.ActualDiceResult(sender, e);
                 }
                 Dicecheck = false;
                 checkrolling = false;

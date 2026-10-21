@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,23 +11,29 @@ namespace catan
     {
         public Gameboard Board;
         public Dice Dice;
-        List<Player> Players;
-        public CatanGameManager() { 
+        public List<Player> Players;
+        public int CurrentPlayerIndex = 0;
+        public CatanGameManager() 
+        { 
         
-        Board = new Gameboard();
+            Board = new Gameboard();
             Dice = new Dice();
             Players = new List<Player>();
-            //Players.Add(new Player(1, "dave", Color.Red));
+            Players.Add(new Player(1, "dave", 0 ,0, 0, DateTime.Now)); //, Color.Red));
 
-            //Players.Add(new Player(2, "bob", Color.Green));
+            Players.Add(new Player(2, "bob", 0, 0, 0, DateTime.Now)); // , Color.Green));
 
-            //Players.Add(new Player(3, "alice", Color.Blue));
+            Players.Add(new Player(3, "alice", 0, 0, 0, DateTime.Now)); //, Color.Blue));
         }
 
 
-        public void RunTurn(Player player)
+        public void NextTurn()
         {
-
+            CurrentPlayerIndex++;
+            if (CurrentPlayerIndex >= Players.Count)
+            {
+                CurrentPlayerIndex = 0;
+            }
         }
 
 

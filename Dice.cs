@@ -65,8 +65,6 @@ namespace catan
 
 
             g.FillRectangle(brushWhite, rootx - 60, rooty, 40, 40);
-            Dice1Value = rand.Next(1, 7);
-            Dice2value = rand.Next(1, 7);
             g.DrawString(Dice1Value.ToString(), font, brushBlack, rootx - 50, rooty);
             g.DrawString(Dice2value.ToString(), font, brushBlack, rootx - 50, rooty + 20);
 
