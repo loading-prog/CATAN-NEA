@@ -16,8 +16,8 @@ namespace catan
 
         public BuildingPoint(int id, Point Position)
         {
-            Id = id;
-            Position = position
+            ID = id;
+            this.Position = position;
             Tiles = new List<Tile>();
             Edges = new List<Edge>();
         }
@@ -32,7 +32,7 @@ namespace catan
 
         public Edge(int id, BuildingPoint p1, BuildingPoint p2)
         {
-            Id = id;
+            ID = id;
             Point1 = p1;
             Point2 = p2;
             Tiles = new List<Tile>();
@@ -47,7 +47,7 @@ namespace catan
         public string Probability { get; set;}
         public List<Tile> Neighbours { get; set;}
         public List <Edge> Edges { get; set;}
-        public List <BuildingPoint> Corners { get; set}
+        public List <BuildingPoint> Corners { get; set;}
 
         public Tile(int id, string type, Point center, string probability)
         {
@@ -56,7 +56,7 @@ namespace catan
             Center = center;
             Neighbours = new List <Tile>();
             Edges = new List<Edge>();
-            Corners = new list<BuildingPoint>();
+            Corners = new List<BuildingPoint>();
             Probability = probability;
             // Console.WriteLine("...");
         }
@@ -77,31 +77,31 @@ namespace catan
             if (Type == "sheep") 
             { 
                 utils.FillHex(g, brushsheep, Center.X, Center.Y); 
-                utils.DrawToken(g, Center.X, Center.Y, Probabilty); 
+                utils.DrawToken(g, Center.X, Center.Y, Probability); 
             } 
 
             if (Type == "brick") 
             { 
                 utils.FillHex(g, brushbrick, Center.X, Center.Y); 
-                utils.DrawToken(g, Center.X, Center.Y, Probabilty); 
+                utils.DrawToken(g, Center.X, Center.Y, Probability); 
             } 
 
             if (Type == "rock") 
             { 
                 utils.FillHex(g, brushrock, Center.X, Center.Y); 
-                utils.DrawToken(g, Center.X, Center.Y, Probabilty); 
+                utils.DrawToken(g, Center.X, Center.Y, Probability); 
             } 
 
             if (Type == "tree") 
             { 
                 utils.FillHex(g, brushtree, Center.X, Center.Y); 
-                utils.DrawToken(g, Center.X, Center.Y, Probabilty);
+                utils.DrawToken(g, Center.X, Center.Y, Probability);
             } 
 
             if (Type == "wheat") 
             { 
                 utils.FillHex(g, brushwheat, Center.X, Center.Y); 
-                utils.DrawToken(g, Center.X, Center.Y, Probabilty); 
+                utils.DrawToken(g, Center.X, Center.Y, Probability); 
             } 
 
             if (Type == "desert") 
