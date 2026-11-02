@@ -31,6 +31,7 @@ namespace catan
         
 
         CatanGameManager gameManager;
+        
         public Form1(bool isLoading)
         {
             InitializeComponent();
@@ -38,9 +39,11 @@ namespace catan
 
             this.Paint += form1_paint;
             this.Click += Form1_Click;
+            
             utils = new MasterPaint.Utils();
-           
             Menu = new MasterPaint.Menu();
+
+            //generating the Board
             gameManager = new CatanGameManager();
             gameManager.Board.DrawBoard();
             gameManager.Board.FindingNeighbour();
@@ -111,13 +114,13 @@ namespace catan
             int i = 0;
             while (i < gameManager.Board.UniquePoints.Count)
             {
-
-                Point p = gameManager.Board.UniquePoints[i];
+                BuildingPoint point = gameManager.Board.BuildingPoints[i];
+                Point p = point.Position;
                 int radius = 15;
                 
                 if(mouse.X >= p.X - radius && mouse.X <= p.X + radius && mouse.Y >= p.Y - radius && mouse.Y <= p.Y + radius)
                 { 
-                    MessageBox.Show("Clicked on tile " + i);
+                    MessageBox.Show("Clicked on Building Point " + point.Id);
                     break;
                 }
                 i++;
