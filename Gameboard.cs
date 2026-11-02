@@ -17,7 +17,7 @@ namespace catan
         public BuildingPoint(int id, Point Position)
         {
             ID = id;
-            this.Position = position;
+            this.Position = Position;
             Tiles = new List<Tile>();
             Edges = new List<Edge>();
         }
