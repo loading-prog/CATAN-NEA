@@ -48,6 +48,7 @@ namespace catan
             gameManager.Board.DrawBoard();
             gameManager.Board.FindingNeighbour();
             gameManager.Board.FindingBuildingPoints();
+            gameManager.Board.FindingEdges();
             gameManager.Dice.roll();
 
             /*Testing BuidlingPoints & if it finds all intersections
@@ -112,7 +113,7 @@ namespace catan
             MouseEventArgs mouse = (MouseEventArgs)e;
 
             int i = 0;
-            while (i < gameManager.Board.UniquePoints.Count)
+            while (i < gameManager.Board.BuildingPoints.Count)
             {
                 BuildingPoint point = gameManager.Board.BuildingPoints[i];
                 Point p = point.Position;
@@ -120,7 +121,7 @@ namespace catan
                 
                 if(mouse.X >= p.X - radius && mouse.X <= p.X + radius && mouse.Y >= p.Y - radius && mouse.Y <= p.Y + radius)
                 { 
-                    MessageBox.Show("Clicked on Building Point " + point.Id);
+                    MessageBox.Show("Clicked on Building Point " + point.ID);
                     break;
                 }
                 i++;
