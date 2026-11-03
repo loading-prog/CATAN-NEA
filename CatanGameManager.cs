@@ -125,5 +125,17 @@ namespace catan
             edgeClicked.RoadOwner = player;
             return true;
         }
+        public bool UpgradeCity(Player player, BuildingPoint point)
+        {
+            if(point.Owner != player)
+            {
+                return false;
+            }
+            if(point.BuildingType != "settlement")
+            {
+                return false;
+            }
+            point.BuildingType = "City";
+            return true;
     }
 }
