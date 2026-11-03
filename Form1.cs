@@ -475,6 +475,24 @@ namespace catan
                 }
             }
 
+            foreach(Buildingpoint in gameManager.Board.BuildingPoints)
+            {
+                if(Point.Owner != null && point.BuildingType == "City")
+                {
+                    int x = point.Position.X;
+                    int y = point.Position.Y;
+
+                    using Brush cityBrush = new SolidBrush(point.Owner.PlayerColour);
+                    using Pen cityBorder = new Pen(Color.Black, 2);
+
+                    g.FillRectagle(cityBrush, x-12, y-10, 24, 20);
+                    g.drawRectangle(cityBorder, x-12, y-10, 24,20);
+
+                    g.fillRectangle(cityBrush, x-6, y-17, 12, 7);
+                    g.DrawRectangle(CityBorder, x-6, y-17, 12, 7);
+                }
+            }
+
             // Drawing Denied Placements across the map.
 
             foreach(BuildingPoint point in gameManager.Board.BuildingPoints)
