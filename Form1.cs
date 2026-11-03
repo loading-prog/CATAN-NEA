@@ -290,6 +290,32 @@ namespace catan
             {
                 gameManager.Board.Tiles[i].Paint(e,utils: utils);
             }
+            
+            foreach (BuildingPoint point in gameManager.Board.BuildingPoints)
+            {
+                if (point.Owner != null && point.BuildingType == "Settlement")
+                {
+                    int x = point.Position.X;
+                    int y = point.Position.Y;
+            
+                    Color playerColour = point.Owner.PlayerColour;
+            
+                    using Brush settlementBrush = new SolidBrush(playerColour);
+                    using Pen settlementBorder = new Pen(Color.Black, 2);
+            
+                    Point[] houseShape =
+                    {
+                        new Point(x - 9, y - 2),
+                        new Point(x, y - 11),
+                        new Point(x + 9, y - 2),
+                        new Point(x + 9, y + 9),
+                        new Point(x - 9, y + 9)
+                    };
+            
+                    g.FillPolygon(settlementBrush, houseShape);
+                    g.DrawPolygon(settlementBorder, houseShape);
+                }
+            }
 
             //Menu 
 
