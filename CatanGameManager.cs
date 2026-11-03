@@ -131,11 +131,12 @@ namespace catan
             {
                 return false;
             }
-            if(point.BuildingType != "settlement")
+            if(point.BuildingType != "Settlement")
             {
                 return false;
             }
             point.BuildingType = "City";
             return true;
+        }
     }
 }
