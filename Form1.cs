@@ -25,7 +25,7 @@ namespace catan
         public bool checkrolling = false;
         Button MenuButton;
         Button NextTurnButton;
-        Button ResetButton
+        Button ResetButton;
         
         MasterPaint.Utils utils;
         MasterPaint.Menu Menu;
@@ -183,12 +183,12 @@ namespace catan
             this.Controls.Add(ResetButton);
         }
 
-        Private void ResetButton_Click(object? sender, EventArgs e)
+        private void ResetButton_Click(object? sender, EventArgs e)
         {
-            foreach(BuildPoint point in gameManger.Board.BuildingPoints)
+            foreach(BuildingPoint point in gameManager.Board.BuildingPoints)
             {
                 point.Owner = null;
-                point.BuildingType = "none";
+                point.BuildingType = "None";
             }
             foreach(Edge edge in gameManager.Board.Edges)
             {
