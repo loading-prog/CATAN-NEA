@@ -207,7 +207,7 @@ namespace catan
                     double distanceX = e.X - closestX;
                     double distanceY = e.Y - closestY;
 
-                    double distance = math.Sqrt(distanceX * distanceX + distanceY * distance Y);
+                    double distance = Math.Sqrt(distanceX * distanceX + distanceY * distanceY);
 
                     if (distance <= closestDistance)
                     {
