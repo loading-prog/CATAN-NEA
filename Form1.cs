@@ -475,7 +475,7 @@ namespace catan
                 }
             }
 
-            foreach(Buildingpoint point in gameManager.Board.BuildingPoints)
+            foreach(BuildingPoint point in gameManager.Board.BuildingPoints)
             {
                 if(point.Owner != null && point.BuildingType == "City")
                 {
