@@ -83,7 +83,46 @@ namespace catan
         } 
         public void BuildRoad(Player player, Edge edgeClicked)
         {
+           // a road cannot be placed on an occupied edge.
+            if(edgeClicked.RoadOwner != null)
+            {
+                return false;
+            }
+            BuildingPoint[] endpoints = 
+            {
+                edgeClicked.Point1,
+                edgeClicked.Point2
+            };
 
+            foreach(BuildingPoint point in endpoints)
+            {
+                if(point.Owner == player)
+                {
+                    return true;
+                }
+                if(point.Owner != null)
+                {
+                    continue;
+                }
+                foreach(Edge connectedEdge in point.Edges)
+                {
+                    if(connectedEdge.RoadOwner == player)
+                    {
+                        return true;
+                    }
+                }
+             }
+             return false;
+        }
+
+        public bool BuildRoad(Player player, Edge edgeClicked)
+        {
+            if(CanPlaceRoad(player,edgeClicked == false)
+               {
+                   return false;
+               }
+            edgeClicked.RoadOwner = player;
+            return true;
         }
     }
 }
