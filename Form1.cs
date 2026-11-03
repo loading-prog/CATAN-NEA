@@ -359,6 +359,27 @@ namespace catan
             {
                 gameManager.Board.Tiles[i].Paint(e,utils: utils);
             }
+
+            foreach(Edge edge in gameManager.Board.Edges)
+            {
+                if(edge.RoadOwner != null)
+                { 
+                    using Pen roadPen = new Pen(edge.RoadOwner.PlayerColour, 7);
+                    g.DrawLine( roadPen, edge.Point1.Position, edge.Point2.Position);
+                }
+            }
+            if(hoveredEdge != null && hoveredPoint == null)
+            {
+                Player currentPlayer = gameManager.Player[gameManager.CurrentPlayerIndex];
+                if(gameManager.CanPlaceRoad(currentPlayer, hoveredEdge) == true)
+                {
+                    Color playerColour = currentPlayer.PlayerColour;
+                    Color ghostColour = Color.FromArgb(110,playerColour.R, playerColour.G, playerColour.B);
+                    using Pen ghostPen = new Pen(ghostColour, 7);
+                    g.DrawLine(ghostPen, hoveredEdge.Point1.Position, hoveredEdge.Point2.Position);
+                }
+            }O
+
             
             foreach (BuildingPoint point in gameManager.Board.BuildingPoints)
             {
