@@ -250,6 +250,66 @@ namespace catan
                 i++;
             }
 
+
+            bool clickedBuildingPoint = false;
+            foreach(BuildingPoint point in gameManager.Board.BuildingPoints)
+            {
+                int dx = mouse.X - point.Position.X;
+                int dy = mouse.Y - point.Position.Y;
+
+                if(dx * dx + dy * dy <= 15 * 15))
+                {
+                    clickedBuildingPoint = true;
+                    break;
+                }
+            }
+            if(clickedBuildingPoint == false)
+            { 
+                Edge? closestEdge = null;
+                double closestDistance = 8;
+                foreach(Edge edge in gameManager.Board.Edges)
+                {
+                    Point a = edge.Point1.Position;
+                    Point b = edge.Point2.Position;
+                    
+                    double dx = b.X - a.X;
+                    double dy = b.Y - a.Y;
+
+                    double lengthSquared = dx * dx + dy * dy;
+
+                    if (lengthSquared == 0)
+                    {
+                        continue;
+                    }
+
+                    double t = ((mouse.X - a.X) * dx + (mouse.Y - a.Y) * dy) / lengthSquared;
+                    t = Math.Max(0, Math.Min(1, t));
+
+                    double closestX = a.X + t * dx;
+                    double closestY = a.Y + t * dy;
+
+                    double distanceX = mouse.X - closestX;
+                    double distanceY = mouse.Y - closestY;
+
+                    double distance = Math.Sqrt(distanceX * distanceX + distanceY * distanceY);
+
+                    if (distance <= closestDistance)
+                    {
+                        closestDistance = distance;
+                        closestEdge = edge;
+                    }
+                }
+
+                if(closestEdge != null)
+                {
+                    Player currentPlayer = gameManger.Players[gameManager.CurrentPlayerIndex];
+                    bool placed = gameManager.BuildRoad(currentPlayer, closestEdge);
+                    if(placed == true)
+                    {
+                        this.Invalidate();
+                    }
+                }
+            }
             //Menu click 
             if (mouse.X >= 10 && mouse.X <= 85 && mouse.Y >= 10 && mouse.Y <= 85)
             {
