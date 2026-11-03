@@ -81,7 +81,8 @@ namespace catan
             point.BuildingType = "Settlement";
             return true;
         } 
-        public void BuildRoad(Player player, Edge edgeClicked)
+        
+        public void CanPlaceRoad(Player player, Edge edgeClicked)
         {
            // a road cannot be placed on an occupied edge.
             if(edgeClicked.RoadOwner != null)
