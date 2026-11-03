@@ -53,33 +53,36 @@ namespace catan
             MessageBox.Show("Board Errors: " + errors);
             gameManager.Dice.roll();
 
-            BuildingPoint testPoint = gameManager.Board.BuildingPoints[0];
-            Player testPlayer = gameManager.Players[0];
 
-            bool firstPlacement = gameManager.PlaceSettlement(testPlayer,testPoint);
-            BuildingPoint neighbour = null;
+            // Testing whether BuildingPoint And Edges can locate Neighbour and validate Placement
+            
+            // BuildingPoint testPoint = gameManager.Board.BuildingPoints[0];
+            // Player testPlayer = gameManager.Players[0];
 
-            foreach(Edge edge in testPoint.Edges)
-            {
-                if (edge.Point1 == testPoint)
-                {
-                    neighbour = edge.Point2;
-                    break;
-                }
-                if (edge.Point2 == testPoint)
-                {
-                    neighbour = edge.Point1;
-                    break;
-                }
-            }
+            // bool firstPlacement = gameManager.PlaceSettlement(testPlayer,testPoint);
+            // BuildingPoint neighbour = null;
 
-            bool neighbourPlacement = false; 
-            if(neighbour != null)
-            {
-                neighbourPlacement = gameManager.PlaceSettlement(testPlayer, neighbour);
-            }
+            // foreach(Edge edge in testPoint.Edges)
+            // {
+            //     if (edge.Point1 == testPoint)
+            //     {
+            //         neighbour = edge.Point2;
+            //         break;
+            //     }
+            //     if (edge.Point2 == testPoint)
+            //     {
+            //         neighbour = edge.Point1;
+            //         break;
+            //     }
+            // }
 
-            MessageBox.Show("First Settlement Placed: " + firstPlacement + "\nFirst Point Owner correct: " + (testPoint.Owner == testPlayer) + "\nFirst Point Type: " + testPoint.BuildingType + "\nNeighbour Placement Allowed: " + neighbourPlacement);
+            // bool neighbourPlacement = false; 
+            // if(neighbour != null)
+            // {
+            //     neighbourPlacement = gameManager.PlaceSettlement(testPlayer, neighbour);
+            // }
+
+            // MessageBox.Show("First Settlement Placed: " + firstPlacement + "\nFirst Point Owner correct: " + (testPoint.Owner == testPlayer) + "\nFirst Point Type: " + testPoint.BuildingType + "\nNeighbour Placement Allowed: " + neighbourPlacement);
 
             /*//testing if OccupiedPoints & OccupiedEdges work.
             int OccupiedPoints = 0;
