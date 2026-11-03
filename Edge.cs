@@ -12,6 +12,7 @@ namespace catan
         public BuildingPoint Point1 { get; set; }
         public BuildingPoint Point2 { get; set; }
         public List<Tile> Tiles { get; set; }
+        public Player? RoadOwner { get; set; }
 
         public Edge(int id, BuildingPoint p1, BuildingPoint p2)
         {
@@ -19,6 +20,7 @@ namespace catan
             Point1 = p1;
             Point2 = p2;
             Tiles = new List<Tile>();
+            RoadOwner = null;
         }
     }
 }

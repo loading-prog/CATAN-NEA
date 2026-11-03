@@ -31,7 +31,7 @@ namespace catan
         
 
         CatanGameManager gameManager;
-        
+
         public Form1(bool isLoading)
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace catan
 
             this.Paint += form1_paint;
             this.MouseClick += Form1_Click;
-            
+
             utils = new MasterPaint.Utils();
             Menu = new MasterPaint.Menu();
 
@@ -50,8 +50,60 @@ namespace catan
             gameManager.Board.FindingBuildingPoints();
             gameManager.Board.FindingEdges();
             int errors = gameManager.Board.CheckBoard();
-            MessageBox.Show("Board Errors: " + errors);   
+            MessageBox.Show("Board Errors: " + errors);
             gameManager.Dice.roll();
+
+            BuildingPoint testPoint = gameManager.Board.BuildingPoints[0];
+            Player testPlayer = gameManager.Players[0];
+
+            bool firstPlacement = gameManager.PlaceSettlement(testPlayer,testPoint);
+            BuildingPoint neighbour = null;
+
+            foreach(Edge edge in testPoint.Edges)
+            {
+                if (edge.Point1 == testPoint)
+                {
+                    neighbour = edge.Point2;
+                    break;
+                }
+                if (edge.Point2 == testPoint)
+                {
+                    neighbour = edge.Point1;
+                    break;
+                }
+            }
+
+            bool neighbourPlacement = false; 
+            if(neighbour != null)
+            {
+                neighbourPlacement = gameManager.PlaceSettlement(testPlayer, neighbour);
+            }
+
+            MessageBox.Show("First Settlement Placed: " + firstPlacement + "\nFirst Point Owner correct: " + (testPoint.Owner == testPlayer) + "\nFirst Point Type: " + testPoint.BuildingType + "\nNeighbour Placement Allowed: " + neighbourPlacement);
+
+            /*//testing if OccupiedPoints & OccupiedEdges work.
+            int OccupiedPoints = 0;
+            int OccupiedEdges = 0;
+
+            BuildingPoint firstPoint = gameManager.Board.BuildingPoints[0];
+            MessageBox.Show("Owner: " + (firstPoint.Owner == null ? "null" : "assigned") + "\nBuildingTypee: [" + (firstPoint.BuildingType ?? "null") + "]");
+
+            foreach(BuildingPoint Point in gameManager.Board.BuildingPoints)
+            {
+                if(Point.Owner!= null || Point.BuildingType!= "None")
+                {
+                    OccupiedPoints++;
+                    MessageBox.Show("Point " + Point.ID + "\nOwner: " + (Point.Owner == null ? "null" : "assaigned") + "\nBuildingType: [" + (Point.BuildingType ?? "null") + "]");
+                }
+            }
+            foreach(Edge edge in gameManager.Board.Edges)
+            {
+                if(edge.RoadOwner != null)
+                {
+                    OccupiedEdges++;
+                }
+            }
+            MessageBox.Show("Occupied Points: " + OccupiedPoints + "\n Occupied Edges: " + OccupiedEdges);*/
 
             /*Testing BuidlingPoints & if it finds all intersections
             MessageBox.Show("Building locations found: " + gameManager.Board.BuildingPoints.Count); = Success/ Expected Outcome */ 
