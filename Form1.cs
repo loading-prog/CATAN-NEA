@@ -325,8 +325,47 @@ namespace catan
                 }
             }
 
-            //Menu 
+            // Drawing Denied Placements across the map.
 
+            foreach(BuildingPoint point in gameManager.Board.BuildingPoints)
+            {
+                if(Point.Owner == null && point.BuildingType == "None")
+                {
+                    bool blocked = false;
+                    foreach(Edge edge in point.Edges)
+                    {
+                        BuildingPoint neighbour = null;
+                        if(edge.Point1 == point)
+                        {
+                            neighbour = edge.Point2;
+                        }
+                        if(edge.Point2 == Point)
+                        {
+                            neighbour = edge.Point1;
+                        }
+                        if (neighbour != null)
+                        {
+                            if(neighbour.Owner != null && (neighbour.BuildingType == "Settlement" || neighbour.BuildingType == "City"))
+                            {
+                                blocked = true;
+                                break;
+                            }
+                        }
+                    }
+                    if(blocked == true)
+                    { 
+                        int x = point.Position.X;
+                        int y = point.Position.Y;
+                        using Pen redPen = new pen(Color.Red, 3);
+
+                        g.Drawline(redPen, x-7, y-7, x+7, y+7);
+                        g.drawline(redPen, x+7, y-7, x-7, y+7);
+                    }
+                }
+            }
+
+            
+            //Menu 
             
             if (MenuCheck == true)
             {
