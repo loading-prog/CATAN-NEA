@@ -243,13 +243,13 @@ namespace catan
                     bool placed = false;
                     if(point.Owner == currentPlayer && point.BuildingType == "Settlement")
                     {
-                        Placed = gameManager.UpgradeCity(currentPlayer, point);
+                        placed = gameManager.UpgradeCity(currentPlayer, point);
                     }
                     else if(point.Owner == null)
                     {
                         placed = gameManager.PlaceSettlement(currentPlayer, point);
                     }
-                    if (Placed == true)
+                    if (placed == true)
                     {
                         this.Invalidate();
                     }
