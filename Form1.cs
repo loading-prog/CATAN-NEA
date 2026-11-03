@@ -370,7 +370,7 @@ namespace catan
             }
             if(hoveredEdge != null && hoveredPoint == null)
             {
-                Player currentPlayer = gameManager.Player[gameManager.CurrentPlayerIndex];
+                Player currentPlayer = gameManager.Players[gameManager.CurrentPlayerIndex];
                 if(gameManager.CanPlaceRoad(currentPlayer, hoveredEdge) == true)
                 {
                     Color playerColour = currentPlayer.PlayerColour;
@@ -378,7 +378,7 @@ namespace catan
                     using Pen ghostPen = new Pen(ghostColour, 7);
                     g.DrawLine(ghostPen, hoveredEdge.Point1.Position, hoveredEdge.Point2.Position);
                 }
-            }O
+            }
 
             
             foreach (BuildingPoint point in gameManager.Board.BuildingPoints)
