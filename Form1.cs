@@ -31,7 +31,8 @@ namespace catan
         
 
         CatanGameManager gameManager;
-
+        private Edge? hoveredEdge = null;
+        private BuildingPoint? hoveredPoint = null;
         public Form1(bool isLoading)
         {
             InitializeComponent();
@@ -39,6 +40,7 @@ namespace catan
 
             this.Paint += form1_paint;
             this.MouseClick += Form1_Click;
+            this.MouseMove += Form1_MouseMove;
 
             utils = new MasterPaint.Utils();
             Menu = new MasterPaint.Menu();
@@ -165,6 +167,64 @@ namespace catan
 
         }
 
+        private void Form1_MouseMove(object? sender, MouseEventArgs e)
+        {
+            BuildingPoint? newHoverPoint = null;
+            Edge? newHoveredEdge = null;
+
+            foreach(BuildingPoint point in gameManager.Board.BuildingPoints)
+            {
+                int dx = e.X-point.Position.X;
+                int dy = e.Y-point.Position.Y;
+                if(dx * dx + dy*dy <= 15 * 15)
+                {
+                    newHoveredPoint = point;
+                    break;
+                }
+            }
+
+            if(newHoveredPoint == null)
+            {
+                double closestDistance = 8;
+                foreach(Edge edge in gameManager.Board.Edges)
+                {
+                    Point a = edge.Point1.Position;
+                    Point b = edge.Point2.Position;
+
+                    double dx = b.X - a.X;
+                    double dy = b.Y - a.Y;
+
+                    double lengthSquared = dx * dx + dy * dy;
+
+                    if(lengthSquared == 0)
+                    { 
+                        continue;
+                    }
+                    double t = ((e.X-a.X) * dx + (e.Y - a.Y) * dx) / lengthSquared;
+                    double closestX = a.X + t * dx;
+                    double closestY = a.Y + t * dy;
+                    double distanceX = e.X - closestX;
+                    double distanceY = e.Y - closestY;
+
+                    double distance = math.Sqrt(distanceX * distancex + distanceY * distance Y);
+
+                    if (distance <= closestDistance)
+                    {
+                        closestDistance = distance;
+                        newHoveredEdge = edge;
+                    }
+                }
+            }
+            if(hoveredPoint != newHoveredPoint || hoveredEdge != newHoveredEdge)
+            {
+                hoveredPoint = newHoveredPoint;
+                hoveredEdge = newHoveredEdge;
+
+                this.Invalidate();
+            }
+        }
+        
+        
         private void Form1_Click(object? sender, EventArgs e)
         {
             MouseEventArgs mouse = (MouseEventArgs)e;
