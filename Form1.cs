@@ -50,7 +50,7 @@ namespace catan
             gameManager.Board.FindingBuildingPoints();
             gameManager.Board.FindingEdges();
             int errors = gameManager.Board.CheckBoard();
-            MessageBox.Show("Board Errors: " + errors);
+            MessageBox.Show("Board Errors: " + errors);   
             gameManager.Dice.roll();
 
             /*Testing BuidlingPoints & if it finds all intersections
@@ -241,21 +241,15 @@ namespace catan
 
             //Menu 
 
+            
             if (MenuCheck == true)
             {
-                if (MenuCheck == true)
-                {
-                    Menu.DrawMenu(g);
-                    Menu.DrawReferenceBox(g);
-                    Menu.DrawIndexBox(g);
-                }
-                if (MenuCheck == false)
-                {
-                    Menu.DrawMenu(g);
-                    Menu.CoverUp(g);
-                }
-                //Dice
+                Menu.DrawMenu(g);
+                Menu.DrawReferenceBox(g);
+                Menu.DrawIndexBox(g);
             }
+                //Dice
+            
 
             if (maxHexes == hexesToDraw)
             {
