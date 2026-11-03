@@ -493,6 +493,38 @@ namespace catan
                 }
             }
 
+            if(hoveredPoint != null)
+            {
+                Player currentPlayer = gameManager.Players[gameManager.CurrentPlayersIndex];
+                int x = hoveredPoint.Position.X;
+                int y = hoveredPoint.Position.Y;
+
+                Color playerColor = currentPlayer.PlayerColor;
+                Color ghost Colour = Color.FromArgb(110, playerColour.R, playerColour.G, playerColour.B);
+                using Brush ghostBrush = new SolidBrush(ghostColour);
+                using Pen ghostBorder = new Pen(ghostColour, 2);
+                if(hoveredPoint.Owner == null && gameManager.CanPlaceSettlement(hoveredPoint) == true)
+                {
+                    Point[] houseShape =
+                    {
+                        new Point(x-9, y-2),
+                        new Point(x,y-11),
+                        new Point(x+9,y-2),
+                        new Point(x+9,y+9),
+                        new Point(x-9,y+9)
+                    };
+
+                    g.FillPolygon(ghostBrush, houseShape);
+                    g.DrawPolygon(ghostBorder, houseShape);
+                }
+                else if(hoveredPoint.Owner == currentPlayer && hoveredPoint.BuildingType == "Settlement")
+                {
+                    g.FillRectangle(ghostBrush, x-12,y-10,24,20);
+                    g.DrawRectangle(ghostBorder, x-12,y-10,24,20);
+                    g.FillRectangle(ghostBrush, x-6,y-17,12,7);
+                    g.DrawRectangle(ghostBorder, x-6,y-17,12,7);
+                }
+            }
             // Drawing Denied Placements across the map.
 
             foreach(BuildingPoint point in gameManager.Board.BuildingPoints)
