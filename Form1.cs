@@ -257,7 +257,7 @@ namespace catan
                 int dx = mouse.X - point.Position.X;
                 int dy = mouse.Y - point.Position.Y;
 
-                if(dx * dx + dy * dy <= 15 * 15))
+                if(dx * dx + dy * dy <= 15 * 15)
                 {
                     clickedBuildingPoint = true;
                     break;
@@ -302,7 +302,7 @@ namespace catan
 
                 if(closestEdge != null)
                 {
-                    Player currentPlayer = gameManger.Players[gameManager.CurrentPlayerIndex];
+                    Player currentPlayer = gameManager.Players[gameManager.CurrentPlayerIndex];
                     bool placed = gameManager.BuildRoad(currentPlayer, closestEdge);
                     if(placed == true)
                     {
