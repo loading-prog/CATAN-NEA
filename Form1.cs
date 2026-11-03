@@ -358,8 +358,8 @@ namespace catan
                         int y = point.Position.Y;
                         using Pen redPen = new Pen(Color.Red, 3);
 
-                        g.Drawline(redPen, x-7, y-7, x+7, y+7);
-                        g.Drawline(redPen, x+7, y-7, x-7, y+7);
+                        g.DrawLine(redPen, x-7, y-7, x+7, y+7);
+                        g.DrawLine(redPen, x+7, y-7, x-7, y+7);
                     }
                 }
             }
