@@ -169,7 +169,7 @@ namespace catan
 
         private void Form1_MouseMove(object? sender, MouseEventArgs e)
         {
-            BuildingPoint? newHoverPoint = null;
+            BuildingPoint? newHoveredPoint = null;
             Edge? newHoveredEdge = null;
 
             foreach(BuildingPoint point in gameManager.Board.BuildingPoints)
@@ -200,13 +200,14 @@ namespace catan
                     { 
                         continue;
                     }
-                    double t = ((e.X-a.X) * dx + (e.Y - a.Y) * dx) / lengthSquared;
+                    double t = ((e.X-a.X) * dx + (e.Y - a.Y) * dy) / lengthSquared;
+                    t = Math.Max(0, Math.Min(1,t));
                     double closestX = a.X + t * dx;
                     double closestY = a.Y + t * dy;
                     double distanceX = e.X - closestX;
                     double distanceY = e.Y - closestY;
 
-                    double distance = math.Sqrt(distanceX * distancex + distanceY * distance Y);
+                    double distance = math.Sqrt(distanceX * distanceX + distanceY * distance Y);
 
                     if (distance <= closestDistance)
                     {
