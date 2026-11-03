@@ -178,7 +178,12 @@ namespace catan
                 
                 if(mouse.X >= p.X - radius && mouse.X <= p.X + radius && mouse.Y >= p.Y - radius && mouse.Y <= p.Y + radius)
                 { 
-                    MessageBox.Show("Clicked on Building Point " + point.ID);
+                    Player currentPlayer = gameManager.Players[gameManager.CurrentPlayerIndex];
+                    bool Placed = gameManager.PlaceSettlement(currentPlayer, point);
+                    if (placed == true)
+                    {
+                        this.Invalidate();
+                    }
                     break;
                 }
                 i++;
