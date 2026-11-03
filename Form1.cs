@@ -153,6 +153,7 @@ namespace catan
 
 
             maxHexes = gameManager.Board.Tiles.Count;
+            InitialiseButtons();
         }
         public void InitialiseButtons()
         {
