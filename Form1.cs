@@ -475,9 +475,9 @@ namespace catan
                 }
             }
 
-            foreach(Buildingpoint in gameManager.Board.BuildingPoints)
+            foreach(Buildingpoint point in gameManager.Board.BuildingPoints)
             {
-                if(Point.Owner != null && point.BuildingType == "City")
+                if(point.Owner != null && point.BuildingType == "City")
                 {
                     int x = point.Position.X;
                     int y = point.Position.Y;
@@ -485,11 +485,11 @@ namespace catan
                     using Brush cityBrush = new SolidBrush(point.Owner.PlayerColour);
                     using Pen cityBorder = new Pen(Color.Black, 2);
 
-                    g.FillRectagle(cityBrush, x-12, y-10, 24, 20);
-                    g.drawRectangle(cityBorder, x-12, y-10, 24,20);
+                    g.FillRectangle(cityBrush, x-12, y-10, 24, 20);
+                    g.DrawRectangle(cityBorder, x-12, y-10, 24,20);
 
-                    g.fillRectangle(cityBrush, x-6, y-17, 12, 7);
-                    g.DrawRectangle(CityBorder, x-6, y-17, 12, 7);
+                    g.FillRectangle(cityBrush, x-6, y-17, 12, 7);
+                    g.DrawRectangle(cityBorder, x-6, y-17, 12, 7);
                 }
             }
 
