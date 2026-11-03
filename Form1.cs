@@ -329,7 +329,7 @@ namespace catan
 
             foreach(BuildingPoint point in gameManager.Board.BuildingPoints)
             {
-                if(Point.Owner == null && point.BuildingType == "None")
+                if(point.Owner == null && point.BuildingType == "None")
                 {
                     bool blocked = false;
                     foreach(Edge edge in point.Edges)
@@ -339,7 +339,7 @@ namespace catan
                         {
                             neighbour = edge.Point2;
                         }
-                        if(edge.Point2 == Point)
+                        if(edge.Point2 == point)
                         {
                             neighbour = edge.Point1;
                         }
@@ -356,10 +356,10 @@ namespace catan
                     { 
                         int x = point.Position.X;
                         int y = point.Position.Y;
-                        using Pen redPen = new pen(Color.Red, 3);
+                        using Pen redPen = new Pen(Color.Red, 3);
 
                         g.Drawline(redPen, x-7, y-7, x+7, y+7);
-                        g.drawline(redPen, x+7, y-7, x-7, y+7);
+                        g.Drawline(redPen, x+7, y-7, x-7, y+7);
                     }
                 }
             }
