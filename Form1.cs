@@ -240,7 +240,15 @@ namespace catan
                 if(mouse.X >= p.X - radius && mouse.X <= p.X + radius && mouse.Y >= p.Y - radius && mouse.Y <= p.Y + radius)
                 { 
                     Player currentPlayer = gameManager.Players[gameManager.CurrentPlayerIndex];
-                    bool Placed = gameManager.PlaceSettlement(currentPlayer, point);
+                    bool placed = false;
+                    if(point.Owner == currentPlayer && point.BuildingType == "Settlement")
+                    {
+                        Placed = gameManager.UpgradeCity(currentPlayer, point);
+                    }
+                    else if(point.Owner == null)
+                    {
+                        placed = gameManager.PlaceSettlement(currentPlayer, point);
+                    }
                     if (Placed == true)
                     {
                         this.Invalidate();
