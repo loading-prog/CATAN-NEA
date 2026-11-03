@@ -495,12 +495,12 @@ namespace catan
 
             if(hoveredPoint != null)
             {
-                Player currentPlayer = gameManager.Players[gameManager.CurrentPlayersIndex];
+                Player currentPlayer = gameManager.Players[gameManager.CurrentPlayerIndex];
                 int x = hoveredPoint.Position.X;
                 int y = hoveredPoint.Position.Y;
 
-                Color playerColor = currentPlayer.PlayerColor;
-                Color ghost Colour = Color.FromArgb(110, playerColour.R, playerColour.G, playerColour.B);
+                Color playerColour = currentPlayer.PlayerColour;
+                Color ghostColour = Color.FromArgb(110, playerColour.R, playerColour.G, playerColour.B);
                 using Brush ghostBrush = new SolidBrush(ghostColour);
                 using Pen ghostBorder = new Pen(ghostColour, 2);
                 if(hoveredPoint.Owner == null && gameManager.CanPlaceSettlement(hoveredPoint) == true)
