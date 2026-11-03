@@ -82,7 +82,7 @@ namespace catan
             return true;
         } 
         
-        public void CanPlaceRoad(Player player, Edge edgeClicked)
+        public bool CanPlaceRoad(Player player, Edge edgeClicked)
         {
            // a road cannot be placed on an occupied edge.
             if(edgeClicked.RoadOwner != null)
@@ -118,7 +118,7 @@ namespace catan
 
         public bool BuildRoad(Player player, Edge edgeClicked)
         {
-            if(CanPlaceRoad(player,edgeClicked == false)
+            if(CanPlaceRoad(player,edgeClicked) == false)
                {
                    return false;
                }
