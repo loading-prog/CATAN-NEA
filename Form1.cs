@@ -38,7 +38,7 @@ namespace catan
             this.DoubleBuffered = true;
 
             this.Paint += form1_paint;
-            this.Click += Form1_Click;
+            this.MouseClick += Form1_Click;
             
             utils = new MasterPaint.Utils();
             Menu = new MasterPaint.Menu();
@@ -49,6 +49,8 @@ namespace catan
             gameManager.Board.FindingNeighbour();
             gameManager.Board.FindingBuildingPoints();
             gameManager.Board.FindingEdges();
+            int errors = gameManager.Board.CheckBoard();
+            MessageBox.Show("Board Errors: " + errors);
             gameManager.Dice.roll();
 
             /*Testing BuidlingPoints & if it finds all intersections
