@@ -180,7 +180,7 @@ namespace catan
                 { 
                     Player currentPlayer = gameManager.Players[gameManager.CurrentPlayerIndex];
                     bool Placed = gameManager.PlaceSettlement(currentPlayer, point);
-                    if (placed == true)
+                    if (Placed == true)
                     {
                         this.Invalidate();
                     }
