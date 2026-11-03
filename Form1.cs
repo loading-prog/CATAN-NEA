@@ -168,7 +168,7 @@ namespace catan
             NextTurnButton.Text = "Next Turn";
             NextTurnButton.Font = new Font("Georgia",15,FontStyle.Bold);
             NextTurnButton.BackColor = Color.Bisque;
-            NextTurmButton.Click += NextTurnButton_Click;
+            NextTurnButton.Click += NextTurnButton_Click;
             this.Controls.Add(NextTurnButton);
         }
         private void NextTurnButton_Click(object? sender, EventArgs e)
