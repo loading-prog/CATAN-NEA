@@ -24,7 +24,8 @@ namespace catan
         public bool Dicecheck = false;
         public bool checkrolling = false;
         Button MenuButton;
-
+        Button NextTurnButton;
+        
         MasterPaint.Utils utils;
         MasterPaint.Menu Menu;
         Theif Theif;
@@ -160,8 +161,25 @@ namespace catan
             MenuButton.Text = "Menu";
             MenuButton.Click += MenuButton_Click;
             this.Controls.Add(MenuButton);
-        }
 
+            NextTurnButton = new Button();
+            NextTurnButton.Location = new Point(1500,450);
+            NextTurnButton.Size = new Size (350, 60);
+            NextTurnButton.Text = "Next Turn";
+            NextTurnButton.Font = new Font("Georgia",15,FontStyle.Bold);
+            NextTurnButton.BackColor = Color.Bisque;
+            NextTurmButton.Click += NextTurnButton_Click;
+            this.Controls.Add(NextTurnButton);
+        }
+        private void NextTurnButton_Click(object? sender, EventArgs e)
+        { 
+            gameManager.NextTurn();
+
+            hoveredEdge = null;
+            hoveredPoint = null;
+            this.Invalidate();
+        }
+        
         private void MenuButton_Click(object? sender, EventArgs e)
         {
 
