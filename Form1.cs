@@ -25,6 +25,7 @@ namespace catan
         public bool checkrolling = false;
         Button MenuButton;
         Button NextTurnButton;
+        Button ResetButton
         
         MasterPaint.Utils utils;
         MasterPaint.Menu Menu;
@@ -170,6 +171,33 @@ namespace catan
             NextTurnButton.BackColor = Color.Bisque;
             NextTurnButton.Click += NextTurnButton_Click;
             this.Controls.Add(NextTurnButton);
+
+            
+            ResetButton = new Button();
+            ResetButton.Location = new Point(1500, 525);
+            ResetButton.Size = new Size(350, 60);
+            ResetButton.Text = "Reset Board";
+            ResetButton.Font = new Font("Georgia", 15, FontStyle.Bold);
+            ResetButton.BackColor = Color.Bisque;
+            ResetButton.Click += ResetButton_Click;
+            this.Controls.Add(ResetButton);
+        }
+
+        Private void ResetButton_Click(object? sender, EventArgs e)
+        {
+            foreach(BuildPoint point in gameManger.Board.BuildingPoints)
+            {
+                point.Owner = null;
+                point.BuildingType = "none";
+            }
+            foreach(Edge edge in gameManager.Board.Edges)
+            {
+                edge.RoadOwner = null;
+            }
+            gameManager.CurrentPlayerIndex = 0;
+            hoveredEdge = null;
+            hoveredPoint = null;
+            this.Invalidate();
         }
         private void NextTurnButton_Click(object? sender, EventArgs e)
         { 
