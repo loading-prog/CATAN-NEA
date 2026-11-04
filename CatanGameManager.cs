@@ -61,7 +61,21 @@ namespace catan
             }
             return CanPlaceSettlement(point);
         }
-        
+        public bool PlaceSetupSettlement(Player player, buildingPoint point)
+        {
+            if(CanPlaceSetupSettlement(player,point) == false)
+            {
+                return false;
+            }
+            if(PlaceSettlement(player,point) == false)
+            {
+                return false;
+            }
+            LastPlacedSettlement = point;
+            WaitingForRoad = true;
+
+            return true;
+        }
         
         public bool CanPlaceSettlement(BuildingPoint point)
         {
