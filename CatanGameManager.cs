@@ -35,27 +35,32 @@ namespace catan
             Players[2].PlayerColour = Color.Orange;
         }
 
-        public void AdvancedSetupTurn()
+        public void AdvanceSetupTurn()
         {
             SetupPlacementNumber++;
-            if (SetupPlacementNumber >= 6)
+        
+            if(SetupPlacementNumber >= 6)
             {
                 GamePhase = "Normal";
                 CurrentPlayerIndex = 0;
                 return;
             }
-            if (SetupPlacementNumber == 0 || SetupPlacementNumber == 5)
+        
+            if(SetupPlacementNumber == 0 || SetupPlacementNumber == 5)
             {
                 CurrentPlayerIndex = 0;
             }
-            if (SetupPlacementNumber == 1 || SetupPlacementNumber = 4)
+        
+            if(SetupPlacementNumber == 1 || SetupPlacementNumber == 4)
             {
                 CurrentPlayerIndex = 1;
             }
-            if (SetupPlacementNumber = 2|| SetupPlacementNumber = 3)
+        
+            if(SetupPlacementNumber == 2 || SetupPlacementNumber == 3)
             {
-                DCurrentPlayerIndex = 2;
+                CurrentPlayerIndex = 2;
             }
+        } 
         public void NextTurn()
         {
             CurrentPlayerIndex++;
