@@ -125,7 +125,7 @@ namespace catan
             {
                 return false;
             }
-            if(WaitingForRoad == false;
+            if(WaitingForRoad == false)
             {
                 return false;
             }
@@ -135,13 +135,13 @@ namespace catan
             }
             if(LastPlacedSettlement == null)
             {
-                return false
+                return false;
             }
             if(edgeClicked.RoadOwner != null)
             {
                 return false;
             }
-            if(edgeClicked.Point1 != LastPlacedSettlement && edgeClicked.Point2 != LastPlaced Settlement)
+            if(edgeClicked.Point1 != LastPlacedSettlement && edgeClicked.Point2 != LastPlacedSettlement)
             {
                 return false;
             }
