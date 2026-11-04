@@ -63,7 +63,7 @@ namespace catan
         } 
         public void NextTurn()
         {
-            if(GameMode == "Catan" && GamePhase == "SetUp")
+            if(GameMode == "Catan" && GamePhase == "Setup")
             {
                    return;
             }
