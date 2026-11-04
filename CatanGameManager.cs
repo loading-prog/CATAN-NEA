@@ -148,6 +148,18 @@ namespace catan
             return true;
         }
                    
+        public bool PlaceSetupRoad(Player player, Edge edgeClicked)
+        {
+            if(CanPlacedSetUpRoad(player,edgeClicked) == false;
+            {
+                   return false;
+            }
+            edgeClicked.RoadOwner = player;
+            WaitingForRoad = false;
+            LastPlacedSettlement = null; 
+
+            return true;
+        }
         
         public bool CanPlaceRoad(Player player, Edge edgeClicked)
         {
