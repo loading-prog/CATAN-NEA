@@ -45,6 +45,24 @@ namespace catan
             }
         }
 
+        public bool CanPlaceSetupSettlement(Player player, BuildingPoint point)
+        { 
+            if(GameMode != "Catan" || GamePhase != "Setup")
+            {
+                return false;
+            }
+            if(WaitingForRoad == true)
+            {
+                return false;
+            }
+            if(player != Players[CurrentPlayerIndex])
+            {
+                return false;
+            }
+            return CanPlaceSettlement(point);
+        }
+        
+        
         public bool CanPlaceSettlement(BuildingPoint point)
         {
             //check for building already there
