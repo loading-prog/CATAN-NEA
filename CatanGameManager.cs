@@ -13,6 +13,11 @@ namespace catan
         public Dice Dice;
         public List<Player> Players;
         public int CurrentPlayerIndex = 0;
+        public string GameMode = "Catan";
+        public string GamePhase = "Setup";
+        public int SetupPlacementNumber = 0;
+        public bool WaitingForRoad = false;
+        public BuildingPoint? LastPlacedSettlement = null;
         public CatanGameManager()
         {
 
