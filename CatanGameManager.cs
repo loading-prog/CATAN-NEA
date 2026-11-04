@@ -182,7 +182,7 @@ namespace catan
             edgeClicked.RoadOwner = player;
             WaitingForRoad = false;
             LastPlacedSettlement = null; 
-
+            AdvanceSetupTurn();
             return true;
         }
         
