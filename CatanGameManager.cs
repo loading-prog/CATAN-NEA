@@ -150,7 +150,7 @@ namespace catan
                    
         public bool PlaceSetupRoad(Player player, Edge edgeClicked)
         {
-            if(CanPlacedSetUpRoad(player,edgeClicked) == false)
+            if(CanPlaceSetupRoad(player, edgeClicked) == false)
             {
                    return false;
             }
