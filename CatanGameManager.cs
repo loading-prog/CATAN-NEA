@@ -118,6 +118,36 @@ namespace catan
             point.BuildingType = "Settlement";
             return true;
         } 
+
+        public bool CanPlaceSetupRoad(Player player,Edge edgeClicked)
+        {
+            if(GameMode != "Catan" || GamePhase != "Setup")
+            {
+                return false;
+            }
+            if(WaitingForRoad == false;
+            {
+                return false;
+            }
+            if(player != Players[CurrentPlayerIndex])
+            {
+                return false;
+            }
+            if(LastPlacedSettlement == null)
+            {
+                return false
+            }
+            if(edgeClicked.RoadOwner != null)
+            {
+                return false;
+            }
+            if(edgeClicked.Point1 != LastPlacedSettlement && edgeClicked.Point2 != LastPlaced Settlement)
+            {
+                return false;
+            }
+            return true;
+        }
+                   
         
         public bool CanPlaceRoad(Player player, Edge edgeClicked)
         {
