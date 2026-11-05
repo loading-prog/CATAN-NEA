@@ -31,6 +31,7 @@ namespace catan
             //PlayerCreation playerCreation = new PlayerCreation(true);
             //playerCreation.Show();
             this.Hide();
+            //this.Show(MainMenu);
 
 
             int PlayerID = 0;

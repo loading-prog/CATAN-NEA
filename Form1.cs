@@ -196,7 +196,18 @@ namespace catan
                 edge.RoadOwner = null;
             }
             gameManager.CurrentPlayerIndex = 0;
-            hoveredEdge = null;
+            gameManager.SetupPlacementNumber = 0;
+            gameManager.WaitingForRoad = false;
+            gameManager.LastPlacedSettlement = null;
+            if (gameManager.GameMode == "Catan")
+            {
+                gameManager.GamePhase = "Setup";
+            }
+            else
+            {
+                gameManager.GamePhase = "Normal";
+            }
+                hoveredEdge = null;
             hoveredPoint = null;
             this.Invalidate();
         }
@@ -288,14 +299,22 @@ namespace catan
                 { 
                     Player currentPlayer = gameManager.Players[gameManager.CurrentPlayerIndex];
                     bool placed = false;
-                    if(point.Owner == currentPlayer && point.BuildingType == "Settlement")
+                    if(gameManager.GameMode == "Catan" && gameManager.GamePhase == "Setup")
                     {
-                        placed = gameManager.UpgradeCity(currentPlayer, point);
+                        placed = gameManager.PlaceSetupSettlement(currentPlayer, point);
                     }
-                    else if(point.Owner == null)
+                    else
                     {
-                        placed = gameManager.PlaceSettlement(currentPlayer, point);
+                        if (point.Owner == currentPlayer && point.BuildingType == "Settlement")
+                        {
+                            placed = gameManager.UpgradeCity(currentPlayer, point);
+                        }
+                        else if (point.Owner == null)
+                        {
+                            placed = gameManager.PlaceSettlement(currentPlayer, point);
+                        }
                     }
+                    
                     if (placed == true)
                     {
                         this.Invalidate();
@@ -358,8 +377,16 @@ namespace catan
                 if(closestEdge != null)
                 {
                     Player currentPlayer = gameManager.Players[gameManager.CurrentPlayerIndex];
-                    bool placed = gameManager.BuildRoad(currentPlayer, closestEdge);
-                    if(placed == true)
+                    bool placed = false;
+                    if(gameManager.GameMode == "Catan" && gameManager.GamePhase == "Setup")
+                    {
+                        placed = gameManager.PlaceSetupRoad(currentPlayer, closestEdge);
+                    }
+                    else
+                    {
+                        placed = gameManager.BuildRoad (currentPlayer, closestEdge);
+                    }
+                    if (placed == true)
                     {
                         this.Invalidate();
                     }
@@ -486,10 +513,19 @@ namespace catan
             if(hoveredEdge != null && hoveredPoint == null)
             {
                 Player currentPlayer = gameManager.Players[gameManager.CurrentPlayerIndex];
-                if(gameManager.CanPlaceRoad(currentPlayer, hoveredEdge) == true)
+                bool canPlaceRoad = false;
+                if(gameManager.GameMode == "Catan" && gameManager.GamePhase == "Setup")
+                    {
+                        canPlaceRoad = gameManager.CanPlaceSetupRoad(currentPlayer, hoveredEdge);
+                    }
+                else
+                {
+                    canPlaceRoad = gameManager.CanPlaceRoad(currentPlayer, hoveredEdge);
+                }
+                if (canPlaceRoad == true)
                 {
                     Color playerColour = currentPlayer.PlayerColour;
-                    Color ghostColour = Color.FromArgb(110,playerColour.R, playerColour.G, playerColour.B);
+                    Color ghostColour = Color.FromArgb(110, playerColour.R, playerColour.G, playerColour.B);
                     using Pen ghostPen = new Pen(ghostColour, 7);
                     g.DrawLine(ghostPen, hoveredEdge.Point1.Position, hoveredEdge.Point2.Position);
                 }
