@@ -138,7 +138,11 @@ namespace catan
             return true;
         }
         public bool PlaceSettlement(Player player, BuildingPoint point)
-        { 
+        {
+            /*if (GameMode == "Catan" && GamePhase == "Setup")
+            {
+                return false;
+            }*/
             if (CanPlaceSettlement(point) == false)
             {
                 return false;

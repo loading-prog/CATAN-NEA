@@ -54,7 +54,7 @@ namespace catan
             gameManager.Board.FindingBuildingPoints();
             gameManager.Board.FindingEdges();
             int errors = gameManager.Board.CheckBoard();
-            MessageBox.Show("Board Errors: " + errors);
+            /*MessageBox.Show("Board Errors: " + errors);*/
             gameManager.Dice.roll();
 
 
@@ -586,7 +586,17 @@ namespace catan
                 Color ghostColour = Color.FromArgb(110, playerColour.R, playerColour.G, playerColour.B);
                 using Brush ghostBrush = new SolidBrush(ghostColour);
                 using Pen ghostBorder = new Pen(ghostColour, 2);
-                if(hoveredPoint.Owner == null && gameManager.CanPlaceSettlement(hoveredPoint) == true)
+
+                bool canPlaceSettlement = false;
+                if(gameManager.GameMode == "Catan" && gameManager.GamePhase == "Setup")
+                {
+                    canPlaceSettlement = gameManager.CanPlaceSetupSettlement(currentPlayer, hoveredPoint);
+                }
+                else
+                {
+                    canPlaceSettlement = gameManager.CanPlaceSettlement(hoveredPoint);
+                }
+                if (hoveredPoint.Owner == null && canPlaceSettlement == true)
                 {
                     Point[] houseShape =
                     {
@@ -600,12 +610,12 @@ namespace catan
                     g.FillPolygon(ghostBrush, houseShape);
                     g.DrawPolygon(ghostBorder, houseShape);
                 }
-                else if(hoveredPoint.Owner == currentPlayer && hoveredPoint.BuildingType == "Settlement")
+                else if (hoveredPoint.Owner == currentPlayer && hoveredPoint.BuildingType == "Settlement" && gameManager.GamePhase == "Normal")
                 {
-                    g.FillRectangle(ghostBrush, x-12,y-10,24,20);
-                    g.DrawRectangle(ghostBorder, x-12,y-10,24,20);
-                    g.FillRectangle(ghostBrush, x-6,y-17,12,7);
-                    g.DrawRectangle(ghostBorder, x-6,y-17,12,7);
+                    g.FillRectangle(ghostBrush, x - 12, y - 10, 24, 20);
+                    g.DrawRectangle(ghostBorder, x - 12, y - 10, 24, 20);
+                    g.FillRectangle(ghostBrush, x - 6, y - 17, 12, 7);
+                    g.DrawRectangle(ghostBorder, x - 6, y - 17, 12, 7);
                 }
             }
             // Drawing Denied Placements across the map.
