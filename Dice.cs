@@ -150,10 +150,15 @@ namespace catan
             Brush brushBlack = new SolidBrush(Color.Black);
             Brush brushWhite = new SolidBrush(Color.White);
             Font font = new Font("Arial", 18, FontStyle.Bold);
-            g.FillRectangle(brushBlack, rootx + 200, rooty + 200, 100, 100);
-            g.FillRectangle(brushWhite, rootx + 205, rooty + 205, 90, 90);
-            g.DrawString("Start", font, brushBlack, rootx + 218, rooty + 238);
+            g.FillRectangle(brushBlack, rootx -730, rooty -590, 100, 100);
+            g.FillRectangle(brushWhite, rootx -725, rooty -585, 90, 90);
+            g.DrawString("Start", font, brushBlack, rootx - 710, rooty - 555);
         }
+
+
+           
+
+
         public void MidRoll(object? sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -162,19 +167,37 @@ namespace catan
             Brush brushWhite = new SolidBrush(Color.White);
             Brush brushRolling = new SolidBrush(Color.LightCoral);
             Font font = new Font("Arial", 18, FontStyle.Bold);
-
             g.FillRectangle(brushWhite, rootx + 190, rooty + 190, 120, 120);
-
             g.FillEllipse(brushRolling, rootx + 60, rooty + 67, 21, 21);
             g.DrawString("Rolling", font, brushBlack, rootx + 205, rooty + 238);
-
-
         }
+        public void YourTurn(object? sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            Pen p = new Pen(Color.Black);
+            Brush brushBlack = new SolidBrush(Color.Black);
+            Brush brushWhite = new SolidBrush(Color.White);
+            Font font = new Font("Arial", 18, FontStyle.Bold);
+            g.FillRectangle(brushBlack, rootx + 200, rooty + 200, 100, 100);
+            g.FillRectangle(brushWhite, rootx + 205, rooty + 205, 90, 90);
+            g.DrawString("Roll", font, brushBlack, rootx + 218, rooty + 238);
+        }
+
+        /*public void DiceHold()
+        {
+            int DiceHold = 0;
+
+            if (
+            {
+
+            }
+        }*/
 
         public void DiceResult()
         {
             int result = Dice1Value + Dice2value;
             int count = 0;
+
             if (result == 0)
             {
                 result = rand.Next(1, 12);
@@ -187,16 +210,17 @@ namespace catan
                     if (Gameboard.Probabilty[i] == result.ToString())
                     {
                         count += 1;
+       
                     }
 
                 }
-
+               
             }
+
             for (int i = 0; i < count; i++)
             {
                 MessageBox.Show("Clicked on tile {}");
             }
         }
-
     }
 }

@@ -23,14 +23,15 @@ namespace catan
         public bool MenuCheck = false;
         public bool Dicecheck = false;
         public bool checkrolling = false;
+        public bool startbutton = false;
         Button MenuButton;
         Button NextTurnButton;
         Button ResetButton;
-        
+
         MasterPaint.Utils utils;
         MasterPaint.Menu Menu;
         Theif Theif;
-        
+
 
         CatanGameManager gameManager;
         private Edge? hoveredEdge = null;
@@ -48,74 +49,79 @@ namespace catan
             Menu = new MasterPaint.Menu();
 
             //generating the Board
+            
             gameManager = new CatanGameManager();
+            /*if (startbutton != false)
+            {
+                gameManager.Board.DrawBoard();
+                gameManager.Dice.roll();
+            }*/
             gameManager.Board.DrawBoard();
+            gameManager.Dice.roll();
             gameManager.Board.FindingNeighbour();
             gameManager.Board.FindingBuildingPoints();
             gameManager.Board.FindingEdges();
             int errors = gameManager.Board.CheckBoard();
-            /*MessageBox.Show("Board Errors: " + errors);*/
-            gameManager.Dice.roll();
-
-
-            // Testing whether BuildingPoint And Edges can locate Neighbour and validate Placement
+            //MessageBox.Show("Board Errors: " + errors);
             
-            // BuildingPoint testPoint = gameManager.Board.BuildingPoints[0];
-            // Player testPlayer = gameManager.Players[0];
 
-            // bool firstPlacement = gameManager.PlaceSettlement(testPlayer,testPoint);
-            // BuildingPoint neighbour = null;
 
-            // foreach(Edge edge in testPoint.Edges)
-            // {
-            //     if (edge.Point1 == testPoint)
-            //     {
-            //         neighbour = edge.Point2;
-            //         break;
-            //     }
-            //     if (edge.Point2 == testPoint)
-            //     {
-            //         neighbour = edge.Point1;
-            //         break;
-            //     }
-            // }
+            /*// Testing whether BuildingPoint And Edges can locate Neighbour and validate Placement
+            BuildingPoint testPoint = gameManager.Board.BuildingPoints[0];
+            Player testPlayer = gameManager.Players[0];
 
-            // bool neighbourPlacement = false; 
-            // if(neighbour != null)
-            // {
-            //     neighbourPlacement = gameManager.PlaceSettlement(testPlayer, neighbour);
-            // }
+            bool firstPlacement = gameManager.PlaceSettlement(testPlayer, testPoint);
+            BuildingPoint neighbour = null;
 
-            // MessageBox.Show("First Settlement Placed: " + firstPlacement + "\nFirst Point Owner correct: " + (testPoint.Owner == testPlayer) + "\nFirst Point Type: " + testPoint.BuildingType + "\nNeighbour Placement Allowed: " + neighbourPlacement);
+            foreach (Edge edge in testPoint.Edges)
+            {
+                if (edge.Point1 == testPoint)
+                {
+                    neighbour = edge.Point2;
+                    break;
+                }
+                if (edge.Point2 == testPoint)
+                {
+                    neighbour = edge.Point1;
+                    break;
+                }
+            }
+            bool neighbourPlacement = false;
+            if (neighbour != null)
+            {
+                neighbourPlacement = gameManager.PlaceSettlement(testPlayer, neighbour);
+            }
 
-            /*//testing if OccupiedPoints & OccupiedEdges work.
+            MessageBox.Show("First Settlement Placed: " + firstPlacement + "\nFirst Point Owner correct: " + (testPoint.Owner == testPlayer) + "\nFirst Point Type: " + testPoint.BuildingType + "\nNeighbour Placement Allowed: " + neighbourPlacement);
+
+            //testing if OccupiedPoints & OccupiedEdges work.
             int OccupiedPoints = 0;
             int OccupiedEdges = 0;
 
             BuildingPoint firstPoint = gameManager.Board.BuildingPoints[0];
             MessageBox.Show("Owner: " + (firstPoint.Owner == null ? "null" : "assigned") + "\nBuildingTypee: [" + (firstPoint.BuildingType ?? "null") + "]");
 
-            foreach(BuildingPoint Point in gameManager.Board.BuildingPoints)
+            foreach (BuildingPoint Point in gameManager.Board.BuildingPoints)
             {
-                if(Point.Owner!= null || Point.BuildingType!= "None")
+                if (Point.Owner != null || Point.BuildingType != "None")
                 {
                     OccupiedPoints++;
                     MessageBox.Show("Point " + Point.ID + "\nOwner: " + (Point.Owner == null ? "null" : "assaigned") + "\nBuildingType: [" + (Point.BuildingType ?? "null") + "]");
                 }
             }
-            foreach(Edge edge in gameManager.Board.Edges)
+            foreach (Edge edge in gameManager.Board.Edges)
             {
-                if(edge.RoadOwner != null)
+                if (edge.RoadOwner != null)
                 {
                     OccupiedEdges++;
                 }
             }
-            MessageBox.Show("Occupied Points: " + OccupiedPoints + "\n Occupied Edges: " + OccupiedEdges);*/
+            MessageBox.Show("Occupied Points: " + OccupiedPoints + "\n Occupied Edges: " + OccupiedEdges);
 
-            /*Testing BuidlingPoints & if it finds all intersections
-            MessageBox.Show("Building locations found: " + gameManager.Board.BuildingPoints.Count); = Success/ Expected Outcome */ 
+            //Testing BuidlingPoints & if it finds all intersections
+            MessageBox.Show("Building locations found: " + gameManager.Board.BuildingPoints.Count); //= Success / Expected Outcome
 
-            /*Testing if the Turn System works
+            //Testing if the Turn System works
             string TurnTest = "";
             for (int i = 0; i < 3; i++)
             {
@@ -123,9 +129,9 @@ namespace catan
                 gameManager.NextTurn();
             }
             TurnTest += gameManager.Players[gameManager.CurrentPlayerIndex].Username;
-            MessageBox.Show(TurnTest); = Success/Expected Outcome */
+            MessageBox.Show(TurnTest); // = Success / Expected Outcome
 
-            /*Testing If Tile.FindNeighours actually works
+            //Testing If Tile.FindNeighours actually works
 
             string results = "";
             foreach (Tile tile in gameManager.Board.Tiles)
@@ -134,22 +140,22 @@ namespace catan
             }
             MessageBox.Show(results);
 
-            int errors = 0; 
-            foreach(Tile tile in gameManager.Board.Tiles)
+            int Errors = 0;
+            foreach (Tile tile in gameManager.Board.Tiles)
             {
-                foreach( Tile neighbour in tile.Neighbours)
+                for (int i = 0; i < tile.Neighbours.Count; i++)
                 {
-                    if (!neighbour.Neighbours.Contains(tile))
+                    if (!tile.Neighbours[i].Neighbours.Contains(tile))
                     {
                         errors++;
                     }
-                    if (neighbour == tile)
+                    if (tile.Neighbours[i] == tile)
                     {
                         errors++;
                     }
                 }
             }
-            MessageBox.Show("Neighbour errors" + errors); = Success / Expected Outcome*/
+            MessageBox.Show("Neighbour errors" + errors); //= Success / Expected Outcome*/
 
 
             maxHexes = gameManager.Board.Tiles.Count;
@@ -165,15 +171,15 @@ namespace catan
             this.Controls.Add(MenuButton);
 
             NextTurnButton = new Button();
-            NextTurnButton.Location = new Point(1500,450);
-            NextTurnButton.Size = new Size (350, 60);
+            NextTurnButton.Location = new Point(1500, 450);
+            NextTurnButton.Size = new Size(350, 60);
             NextTurnButton.Text = "Next Turn";
-            NextTurnButton.Font = new Font("Georgia",15,FontStyle.Bold);
+            NextTurnButton.Font = new Font("Georgia", 15, FontStyle.Bold);
             NextTurnButton.BackColor = Color.Bisque;
             NextTurnButton.Click += NextTurnButton_Click;
             this.Controls.Add(NextTurnButton);
 
-            
+
             ResetButton = new Button();
             ResetButton.Location = new Point(1500, 525);
             ResetButton.Size = new Size(350, 60);
@@ -186,12 +192,12 @@ namespace catan
 
         private void ResetButton_Click(object? sender, EventArgs e)
         {
-            foreach(BuildingPoint point in gameManager.Board.BuildingPoints)
+            foreach (BuildingPoint point in gameManager.Board.BuildingPoints)
             {
                 point.Owner = null;
                 point.BuildingType = "None";
             }
-            foreach(Edge edge in gameManager.Board.Edges)
+            foreach (Edge edge in gameManager.Board.Edges)
             {
                 edge.RoadOwner = null;
             }
@@ -207,19 +213,23 @@ namespace catan
             {
                 gameManager.GamePhase = "Normal";
             }
-                hoveredEdge = null;
+            hoveredEdge = null;
             hoveredPoint = null;
             this.Invalidate();
         }
         private void NextTurnButton_Click(object? sender, EventArgs e)
-        { 
+        {
+            /*if (gameManager.Dice.DiceHold() = true)
+            {
+
+            }*/
             gameManager.NextTurn();
 
             hoveredEdge = null;
             hoveredPoint = null;
             this.Invalidate();
         }
-        
+
         private void MenuButton_Click(object? sender, EventArgs e)
         {
 
@@ -230,21 +240,21 @@ namespace catan
             BuildingPoint? newHoveredPoint = null;
             Edge? newHoveredEdge = null;
 
-            foreach(BuildingPoint point in gameManager.Board.BuildingPoints)
+            foreach (BuildingPoint point in gameManager.Board.BuildingPoints)
             {
-                int dx = e.X-point.Position.X;
-                int dy = e.Y-point.Position.Y;
-                if(dx * dx + dy*dy <= 15 * 15)
+                int dx = e.X - point.Position.X;
+                int dy = e.Y - point.Position.Y;
+                if (dx * dx + dy * dy <= 15 * 15)
                 {
                     newHoveredPoint = point;
                     break;
                 }
             }
 
-            if(newHoveredPoint == null)
+            if (newHoveredPoint == null)
             {
                 double closestDistance = 8;
-                foreach(Edge edge in gameManager.Board.Edges)
+                foreach (Edge edge in gameManager.Board.Edges)
                 {
                     Point a = edge.Point1.Position;
                     Point b = edge.Point2.Position;
@@ -254,12 +264,12 @@ namespace catan
 
                     double lengthSquared = dx * dx + dy * dy;
 
-                    if(lengthSquared == 0)
-                    { 
+                    if (lengthSquared == 0)
+                    {
                         continue;
                     }
-                    double t = ((e.X-a.X) * dx + (e.Y - a.Y) * dy) / lengthSquared;
-                    t = Math.Max(0, Math.Min(1,t));
+                    double t = ((e.X - a.X) * dx + (e.Y - a.Y) * dy) / lengthSquared;
+                    t = Math.Max(0, Math.Min(1, t));
                     double closestX = a.X + t * dx;
                     double closestY = a.Y + t * dy;
                     double distanceX = e.X - closestX;
@@ -274,7 +284,7 @@ namespace catan
                     }
                 }
             }
-            if(hoveredPoint != newHoveredPoint || hoveredEdge != newHoveredEdge)
+            if (hoveredPoint != newHoveredPoint || hoveredEdge != newHoveredEdge)
             {
                 hoveredPoint = newHoveredPoint;
                 hoveredEdge = newHoveredEdge;
@@ -282,8 +292,8 @@ namespace catan
                 this.Invalidate();
             }
         }
-        
-        
+
+
         private void Form1_Click(object? sender, EventArgs e)
         {
             MouseEventArgs mouse = (MouseEventArgs)e;
@@ -294,12 +304,12 @@ namespace catan
                 BuildingPoint point = gameManager.Board.BuildingPoints[i];
                 Point p = point.Position;
                 int radius = 15;
-                
-                if(mouse.X >= p.X - radius && mouse.X <= p.X + radius && mouse.Y >= p.Y - radius && mouse.Y <= p.Y + radius)
-                { 
+
+                if (mouse.X >= p.X - radius && mouse.X <= p.X + radius && mouse.Y >= p.Y - radius && mouse.Y <= p.Y + radius)
+                {
                     Player currentPlayer = gameManager.Players[gameManager.CurrentPlayerIndex];
                     bool placed = false;
-                    if(gameManager.GameMode == "Catan" && gameManager.GamePhase == "Setup")
+                    if (gameManager.GameMode == "Catan" && gameManager.GamePhase == "Setup")
                     {
                         placed = gameManager.PlaceSetupSettlement(currentPlayer, point);
                     }
@@ -314,7 +324,7 @@ namespace catan
                             placed = gameManager.PlaceSettlement(currentPlayer, point);
                         }
                     }
-                    
+
                     if (placed == true)
                     {
                         this.Invalidate();
@@ -326,26 +336,26 @@ namespace catan
 
 
             bool clickedBuildingPoint = false;
-            foreach(BuildingPoint point in gameManager.Board.BuildingPoints)
+            foreach (BuildingPoint point in gameManager.Board.BuildingPoints)
             {
                 int dx = mouse.X - point.Position.X;
                 int dy = mouse.Y - point.Position.Y;
 
-                if(dx * dx + dy * dy <= 15 * 15)
+                if (dx * dx + dy * dy <= 15 * 15)
                 {
                     clickedBuildingPoint = true;
                     break;
                 }
             }
-            if(clickedBuildingPoint == false)
-            { 
+            if (clickedBuildingPoint == false)
+            {
                 Edge? closestEdge = null;
                 double closestDistance = 8;
-                foreach(Edge edge in gameManager.Board.Edges)
+                foreach (Edge edge in gameManager.Board.Edges)
                 {
                     Point a = edge.Point1.Position;
                     Point b = edge.Point2.Position;
-                    
+
                     double dx = b.X - a.X;
                     double dy = b.Y - a.Y;
 
@@ -374,17 +384,17 @@ namespace catan
                     }
                 }
 
-                if(closestEdge != null)
+                if (closestEdge != null)
                 {
                     Player currentPlayer = gameManager.Players[gameManager.CurrentPlayerIndex];
                     bool placed = false;
-                    if(gameManager.GameMode == "Catan" && gameManager.GamePhase == "Setup")
+                    if (gameManager.GameMode == "Catan" && gameManager.GamePhase == "Setup")
                     {
                         placed = gameManager.PlaceSetupRoad(currentPlayer, closestEdge);
                     }
                     else
                     {
-                        placed = gameManager.BuildRoad (currentPlayer, closestEdge);
+                        placed = gameManager.BuildRoad(currentPlayer, closestEdge);
                     }
                     if (placed == true)
                     {
@@ -416,7 +426,7 @@ namespace catan
             if (mouse.X >= 1800 && mouse.X <= 1900 && mouse.Y >= 800 && mouse.Y <= 900)
             {
                 Dicecheck = true;
-                if(gameManager.Dice == null)
+                if (gameManager.Dice == null)
                 {
                     MessageBox.Show("ERROR : Dice object is NULL!");
                 }
@@ -424,8 +434,18 @@ namespace catan
                 {
                     gameManager.Dice.roll();
                 }
-                    this.Invalidate();
+                
+                this.Invalidate();
             }
+
+
+
+            if (mouse.X >= 870 && mouse.X <= 970 && mouse.Y >= 10 && mouse.Y <= 110)
+            {
+                 startbutton = true;
+            }
+
+            this.Invalidate();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -495,7 +515,7 @@ namespace catan
             }
 
 
-                if (gameManager.Board == null) return;
+            if (gameManager.Board == null) return;
 
             for (int i = 0; i < hexesToDraw; i++)
             {
@@ -666,8 +686,10 @@ namespace catan
                 Menu.DrawReferenceBox(g);
                 Menu.DrawIndexBox(g);
             }
-                //Dice
-            
+            //Dice
+
+            gameManager.Dice.StartButton(sender, e);
+            gameManager.Dice.YourTurn(sender, e);
 
             if (maxHexes == hexesToDraw)
             {
@@ -688,7 +710,7 @@ namespace catan
                 }
                 Dicecheck = false;
                 checkrolling = false;
-                gameManager.Dice.StartButton(sender, e);
+                
             }
         }
     }

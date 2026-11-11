@@ -281,7 +281,7 @@ namespace catan
 
             }
         }
-        public class settlement
+        public class Settlement
         {
             public void DrawSettlemnt(object sender, PaintEventArgs e)
             {
