@@ -688,12 +688,12 @@ namespace catan
             }
             //Dice
 
-            gameManager.Dice.StartButton(sender, e);
+            //gameManager.Dice.StartButton(sender, e);
             gameManager.Dice.YourTurn(sender, e);
 
             if (maxHexes == hexesToDraw)
             {
-                gameManager.Dice.StartButton(sender, e);
+                //gameManager.Dice.StartButton(sender, e);
                 gameManager.Dice.DiceFace(sender, e);
                 gameManager.Dice.ActualDiceResult(sender, e);
             }
@@ -712,6 +712,21 @@ namespace catan
                 checkrolling = false;
                 
             }
+
+            bool TilliSaySo = false;
+            while (TilliSaySo != true)
+            {
+                for (int i =0; i< maxHexes; i++)
+                {
+                    int temp = Int32.Parse(Gameboard.Probabilty[i]);
+                    if (gameManager.Dice.total == temp)
+                    {
+                        
+                    }
+                }
+            }
+                
+
         }
     }
 }

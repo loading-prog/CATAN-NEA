@@ -143,7 +143,7 @@ namespace catan
             }
         }
 
-        public void StartButton(object? sender, PaintEventArgs e)
+        /*public void StartButton(object? sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             Pen p = new Pen(Color.Black);
@@ -153,7 +153,7 @@ namespace catan
             g.FillRectangle(brushBlack, rootx -730, rooty -590, 100, 100);
             g.FillRectangle(brushWhite, rootx -725, rooty -585, 90, 90);
             g.DrawString("Start", font, brushBlack, rootx - 710, rooty - 555);
-        }
+        }*/
 
 
            
