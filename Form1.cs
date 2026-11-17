@@ -205,6 +205,8 @@ namespace catan
             gameManager.SetupPlacementNumber = 0;
             gameManager.WaitingForRoad = false;
             gameManager.LastPlacedSettlement = null;
+            gameManager.HasRolledDice = false;
+            
             if (gameManager.GameMode == "Catan")
             {
                 gameManager.GamePhase = "Setup";
@@ -315,13 +317,21 @@ namespace catan
                     }
                     else
                     {
-                        if (point.Owner == currentPlayer && point.BuildingType == "Settlement")
+                        if(gameManger.GameMode == "Catan" && gameManager.GamePhase == "Normal" && gameManager.HasRolledDice == false)
                         {
-                            placed = gameManager.UpgradeCity(currentPlayer, point);
+                            MessageBox.Show("You must roll the dice before building");
+                            return;
                         }
-                        else if (point.Owner == null)
+                        else
                         {
-                            placed = gameManager.PlaceSettlement(currentPlayer, point);
+                            if (point.Owner == currentPlayer && point.BuildingType == "Settlement")
+                            {
+                                placed = gameManager.UpgradeCity(currentPlayer, point);
+                            }
+                            else if (point.Owner == null)
+                            {
+                                placed = gameManager.PlaceSettlement(currentPlayer, point);
+                            }
                         }
                     }
 
@@ -392,6 +402,10 @@ namespace catan
                     {
                         placed = gameManager.PlaceSetupRoad(currentPlayer, closestEdge);
                     }
+                    if (gameManager.GameMode == "Catan" && gameManager.GamePhase == "Setup" && gameManager.HasRolledDice == false)
+                    {
+                        MessageBox.Show("You must roll the dice before building.");
+                    }
                     else
                     {
                         placed = gameManager.BuildRoad(currentPlayer, closestEdge);
@@ -425,6 +439,16 @@ namespace catan
             //Dice click
             if (mouse.X >= 1800 && mouse.X <= 1900 && mouse.Y >= 800 && mouse.Y <= 900)
             {
+                if(gameManager.GameMode == "Catan" && gameManager.GamePhase == "Setup")
+                {
+                    MessageBox.Show("Finish placing your settlements and roads first");
+                    return;
+                }
+                if(gameManager.HasRolledDice == true)
+                {
+                    MessageBox.Show("You have already rolled  this turn");
+                    return;
+                }
                 Dicecheck = true;
                 if (gameManager.Dice == null)
                 {
@@ -433,6 +457,7 @@ namespace catan
                 else
                 {
                     gameManager.Dice.roll();
+                    gameManager.HasRolledDice = true;
                     GiveResources();
                 }
                 
