@@ -433,6 +433,7 @@ namespace catan
                 else
                 {
                     gameManager.Dice.roll();
+                    GiveResources();
                 }
                 
                 this.Invalidate();
