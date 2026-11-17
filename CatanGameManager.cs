@@ -18,6 +18,7 @@ namespace catan
         public int SetupPlacementNumber = 0;
         public bool WaitingForRoad = false;
         public BuildingPoint? LastPlacedSettlement = null;
+        public bool HasRolledDice = false;
         public CatanGameManager()
         {
 
@@ -67,7 +68,14 @@ namespace catan
             {
                    return;
             }
+            if(GameMode == "Catan" && GamePhase == "Normal" &&  HasRolledDice == false)
+            {
+                return;
+            }
+            
             CurrentPlayerIndex++;
+            HasRolledDice = false;
+            
             if (CurrentPlayerIndex >= Players.Count)
             {
                 CurrentPlayerIndex = 0;
