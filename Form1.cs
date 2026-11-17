@@ -713,29 +713,32 @@ namespace catan
                 
             }
 
-            foreach(Tile tile in gameManager.Board.Tiles)
+            private void GiveResources()
             {
-                if(tile.Probability == gameManager.Dice.total.ToString())
+                foreach(Tile tile in gameManager.Board.Tiles)
                 {
-                    foreach(BuildingPoint point in tile.Corners)
+                    if(tile.Probability == gameManager.Dice.total.ToString())
                     {
-                        if(point.Owner != null)
+                        foreach(BuildingPoint point in tile.Corners)
                         {
-                            int amount = 0;
-            
-                            if(point.BuildingType == "Settlement")
+                            if(point.Owner != null)
                             {
-                                amount = 1;
-                            }
-                            else if(point.BuildingType == "City")
-                            {
-                                amount = 2;
-                            }
-            
-                            if(amount > 0)
-                            {
-                                MessageBox.Show(point.Owner.Username + " receives " +
-                                    amount + " " + tile.Type);
+                                int amount = 0;
+                
+                                if(point.BuildingType == "Settlement")
+                                {
+                                    amount = 1;
+                                }
+                                else if(point.BuildingType == "City")
+                                {
+                                    amount = 2;
+                                }
+                
+                                if(amount > 0)
+                                {
+                                    MessageBox.Show(point.Owner.Username + " receives " +
+                                        amount + " " + tile.Type);
+                                }
                             }
                         }
                     }
