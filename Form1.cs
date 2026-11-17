@@ -713,20 +713,34 @@ namespace catan
                 
             }
 
-            bool TilliSaySo = false;
-            while (TilliSaySo != true)
+            foreach(Tile tile in gameManager.Board.Tiles)
             {
-                for (int i =0; i< maxHexes; i++)
+                if(tile.Probability == gameManager.Dice.total.ToString())
                 {
-                    int temp = Int32.Parse(Gameboard.Probabilty[i]);
-                    if (gameManager.Dice.total == temp)
+                    foreach(BuildingPoint point in tile.Corners)
                     {
-                        
+                        if(point.Owner != null)
+                        {
+                            int amount = 0;
+            
+                            if(point.BuildingType == "Settlement")
+                            {
+                                amount = 1;
+                            }
+                            else if(point.BuildingType == "City")
+                            {
+                                amount = 2;
+                            }
+            
+                            if(amount > 0)
+                            {
+                                MessageBox.Show(point.Owner.Username + " receives " +
+                                    amount + " " + tile.Type);
+                            }
+                        }
                     }
                 }
             }
-                
-
         }
     }
 }
