@@ -712,33 +712,32 @@ namespace catan
                 checkrolling = false;
                 
             }
-
-            private void GiveResources()
+        }
+        private void GiveResources()
+        {
+            foreach(Tile tile in gameManager.Board.Tiles)
             {
-                foreach(Tile tile in gameManager.Board.Tiles)
+                if(tile.Probability == gameManager.Dice.total.ToString())
                 {
-                    if(tile.Probability == gameManager.Dice.total.ToString())
+                    foreach(BuildingPoint point in tile.Corners)
                     {
-                        foreach(BuildingPoint point in tile.Corners)
+                        if(point.Owner != null)
                         {
-                            if(point.Owner != null)
+                            int amount = 0;
+            
+                            if(point.BuildingType == "Settlement")
                             {
-                                int amount = 0;
-                
-                                if(point.BuildingType == "Settlement")
-                                {
-                                    amount = 1;
-                                }
-                                else if(point.BuildingType == "City")
-                                {
-                                    amount = 2;
-                                }
-                
-                                if(amount > 0)
-                                {
-                                    MessageBox.Show(point.Owner.Username + " receives " +
-                                        amount + " " + tile.Type);
-                                }
+                                amount = 1;
+                            }
+                            else if(point.BuildingType == "City")
+                            {
+                                amount = 2;
+                            }
+            
+                            if(amount > 0)
+                            {
+                                MessageBox.Show(point.Owner.Username + " receives " +
+                                    amount + " " + tile.Type);
                             }
                         }
                     }
