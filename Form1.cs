@@ -405,7 +405,7 @@ namespace catan
                     }
                     else
                     {
-                        if (gameManager.GameMode == "Catan" && gameManager.GamePhase == "Setup" && gameManager.HasRolledDice == false)
+                        if (gameManager.GameMode == "Catan" && gameManager.GamePhase == "Normal" && gameManager.HasRolledDice == false)
                         {
                             MessageBox.Show("You must roll the dice before building.");
                         }
