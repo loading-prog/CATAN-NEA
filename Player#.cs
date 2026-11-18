@@ -41,23 +41,23 @@ namespace catan
         {
             if(resource == "Brick")
             {
-                Brick += amount
+                Brick += amount;
             }
             if(resource == "Ore")
             {
-                Ore += amount
+                Ore += amount;
             }
             if(resource == "Wheat")
             {
-                Wheat += amount
+                Wheat += amount;
             }
             if(resource == "Sheep")
             {
-                Sheep += amount
+                Sheep += amount;
             }
             if(resource == "Wood")
             {
-                Wood += amount
+                Wood += amount;
             }
         }
     }
