@@ -517,9 +517,9 @@ namespace catan
             for (int i = 0; i < gameManager.Players.Count; i++)
             {
                 int Panelx = 1500;
-                int Panely = 100 + (i * 100);
+                int Panely = 100 + (i * 150);
                 int panelWidth = 350;
-                int PanelHight = 85;
+                int PanelHight = 135;
 
                 using Brush Parchment = new SolidBrush(Color.Bisque);
                 using Brush PlayerBrush = new SolidBrush(gameManager.Players[i].PlayerColour);
