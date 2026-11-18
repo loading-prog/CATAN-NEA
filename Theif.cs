@@ -69,11 +69,11 @@ namespace catan
                 return "";
             }
             Random random = new Random();
-            int index = random.Next(Resources.Count);
+            int index = random.Next(resources.Count);
             string stolenResource = resources[index];
 
-            victim.AddResources(stolenResource, -1);
-            Theif.AddResources(stolenResource, 1);
+            victim.AddResource(stolenResource, -1);
+            Theif.AddResource(stolenResource, 1);
 
             return stolenResource;
         }
@@ -88,31 +88,32 @@ namespace catan
         }
         public bool DiscardRescource(Player player, string resource)
         {
-            if(resource == "brick" && player.Brick >0)
+            if(resource == "brick" && player.Brick > 0)
             {
                 player.AddResource("Brick", -1);
                 return true;
             }
-            if(resource == "Wood" && player.Wood >0)
+            if(resource == "Wood" && player.Wood > 0)
             {
                 player.AddResource("Wood", -1);
                 return true;
             }
-            if(resource == "Sheep" && player.Sheep >0)
+            if(resource == "Sheep" && player.Sheep > 0)
             {
                 player.AddResource("Sheep", -1);
                 return true;
             }
-            if(resource == "Wheat" && player.Wheat >0)
+            if(resource == "Wheat" && player.Wheat > 0)
             {
                 player.AddResource("Wheat", -1);
                 return true;
             }
-            if(resource == "Ore" && player.Ore >0)
+            if(resource == "Ore" && player.Ore >  bbnnjju0)
             {
                 player.AddResource("Ore", -1);
                 return true;
             }
             return false;
+        }
     }
 }
