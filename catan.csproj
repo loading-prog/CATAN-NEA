@@ -15,4 +15,5 @@
     <Content Include="Resources\*.PNG">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
 </Project>
