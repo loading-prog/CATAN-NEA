@@ -183,7 +183,7 @@ namespace catan
             this.Controls.Add(MenuButton);
 
             NextTurnButton = new Button();
-            NextTurnButton.Location = new Point(1500, 450);
+            NextTurnButton.Location = new Point(20, 375);
             NextTurnButton.Size = new Size(350, 60);
             NextTurnButton.Text = "Next Turn";
             NextTurnButton.Font = new Font("Georgia", 15, FontStyle.Bold);
@@ -193,7 +193,7 @@ namespace catan
 
 
             ResetButton = new Button();
-            ResetButton.Location = new Point(1500, 525);
+            ResetButton.Location = new Point(20, 450);
             ResetButton.Size = new Size(350, 60);
             ResetButton.Text = "Reset Board";
             ResetButton.Font = new Font("Georgia", 15, FontStyle.Bold);
@@ -545,35 +545,35 @@ namespace catan
                     BorderColour = Color.Goldenrod;
                     BorderWidth = 3;
                 }
-                
+
                 using Pen Border = new Pen(BorderColour, BorderWidth);
 
                 g.FillRectangle(Parchment, Panelx, Panely, panelWidth, PanelHight);
-                g.DrawRectangle(Border, Panelx,Panely, panelWidth, PanelHight);
+                g.DrawRectangle(Border, Panelx, Panely, panelWidth, PanelHight);
 
                 g.FillRectangle(PlayerBrush, Panelx + 12, Panely + 12, 20, 60);
 
                 g.DrawString(gameManager.Players[i].Username, PlayerFont, Brushes.SaddleBrown, Panelx + 45, Panely + 24);
+
+                int CardY = Panely + 65;
+                int CardWidth = 40;
+                int CardHeight = 48;
+                int CardGap = 23;
+
+                g.DrawImage(BrickImage, Panelx + 15, CardY, CardWidth, CardHeight);
+                g.DrawImage(WoodImage, Panelx + 15 + (CardWidth + CardGap), CardY, CardWidth, CardHeight);
+                g.DrawImage(WheatImage, Panelx + 15 + (CardWidth + CardGap) * 2, CardY, CardWidth, CardHeight);
+                g.DrawImage(OreImage, Panelx + 15 + (CardWidth + CardGap) * 3, CardY, CardWidth, CardHeight);
+                g.DrawImage(SheepImage, Panelx + 15 + (CardWidth + CardGap) * 4, CardY, CardWidth, CardHeight);
+
+                using Font ResourceFont = new Font("Georgia", 11, FontStyle.Bold);
+
+                g.DrawString(gameManager.Players[i].Brick.ToString(), ResourceFont, Brushes.SaddleBrown, Panelx + 55, CardY + 15);
+                g.DrawString(gameManager.Players[i].Wood.ToString(), ResourceFont, Brushes.SaddleBrown, Panelx + 55 + (CardWidth + CardGap), CardY + 15);
+                g.DrawString(gameManager.Players[i].Sheep.ToString(), ResourceFont, Brushes.SaddleBrown, Panelx + 55 + (CardWidth + CardGap) * 2, CardY + 15);
+                g.DrawString(gameManager.Players[i].Wheat.ToString(), ResourceFont, Brushes.SaddleBrown, Panelx + 55 + (CardWidth + CardGap) * 3, CardY + 15);
+                g.DrawString(gameManager.Players[i].Ore.ToString(), ResourceFont, Brushes.SaddleBrown, Panelx + 55 + (CardWidth + CardGap) * 4, CardY + 15);
             }
-            int CardY = Panely +65;
-            int CardWidth = 40;
-            int CardHeight = 48;
-            int CardGap = 23;
-
-            g.DrawImage(BrickImage, Panelx + 15, CardY, CardWidth, CardHight);
-            g.DrawImage(WoodImage, Panelx + 15 + (CardWidth + CardGap), CardY, CardWidth, CardHight);
-            g.DrawImage(WheatImage, Panelx + 15 + (CardWidth + CardGap)*2, CardY, CardWidth, CardHight);
-            g.DrawImage(OreImage, Panelx + 15 + (CardWidth + CardGap)*3, CardY, CardWidth, CardHight);
-            g.DrawImage(SheepImage, Panelx + 15 + (CardWidth + CardGap)*4, CardY, CardWidth, CardHight);
-
-            using Font ResourceFont = new Font("Georgia", 11, FontStyle.Bold);
-            
-            g.DrawString(gameManager.Players[i].Brick.ToString(), ResourceFont, Brushes.SaddleBrown, Panelx + 55, CardY + 15);
-            g.DrawString(gameManager.Players[i].Wood.ToString(), ResourceFont, Brushes.SaddleBrown, Panelx + 55 + (CardWidth + CardGap), CardY + 15);
-            g.DrawString(gameManager.Players[i].Sheep.ToString(), ResourceFont, Brushes.SaddleBrown, Panelx + 55 + (CardWidth + CardGap) * 2, CardY + 15);
-            g.DrawString(gameManager.Players[i].Wheat.ToString(), ResourceFont, Brushes.SaddleBrown, Panelx + 55 + (CardWidth + CardGap) * 3, CardY + 15);
-            g.DrawString(gameManager.Players[i].Ore.ToString(), ResourceFont, Brushes.SaddleBrown, Panelx + 55 + (CardWidth + CardGap) * 4, CardY + 15);
-            
             if (gameManager.Board == null) return;
 
             for (int i = 0; i < hexesToDraw; i++)

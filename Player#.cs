@@ -10,6 +10,7 @@ namespace catan
         public int TotalGamesPlayed { get; set; }
         public int TotalWins { get; set; }
         public int TotalLosses { get; set; }
+        public int TotalVictoryPoints { get; set; }
         public DateTime CreationDate { get; set; }
 
         // Player Resources
@@ -26,15 +27,17 @@ namespace catan
             TotalGamesPlayed = 0;
             TotalWins = 0;
             TotalLosses = 0;
+            TotalVictoryPoints = 0;
             CreationDate = DateTime.Now;
         }
-        public Player(int playerId, string username, int totalGames, int totalWins, int totalLosses, DateTime creationDate)
+        public Player(int playerId, string username, int totalGames, int totalWins, int totalLosses, int TVP, DateTime creationDate)
         {
             PlayerID = playerId;
             Username = username;
             TotalGamesPlayed = totalGames;
             TotalWins = totalWins;
             TotalLosses = totalLosses;
+            TotalVictoryPoints = TVP;
             CreationDate = creationDate;
         }
         public void AddResource(string resource, int amount)
