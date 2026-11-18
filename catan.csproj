@@ -12,7 +12,7 @@
     <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.12" />
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="10.0.12" />
   </ItemGroup>
-    <Content Include == "Resource\*.PNG">
+    <Content Include="Resources\*.PNG">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
 </Project>
