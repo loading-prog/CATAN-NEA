@@ -767,27 +767,31 @@ namespace catan
                             if(amount > 0)
                             {
                                 string resource = "";
-                                if(tile.Type = "wheat")
+                                if(tile.Type == "wheat")
                                 {
-                                    resouce = Wheat;
+                                    resource = "Wheat";
                                 }
-                                if(tile.Type = "Stone")
+                                if(tile.Type == "rock")
                                 {
-                                    resouce = Ore;
+                                    resource = "Ore";
                                 }
-                                if(tile.Type = "Brick")
+                                if(tile.Type == "brick")
                                 {
-                                    resouce = Brick;
+                                    resource = "Brick";
                                 }
-                                if(tile.Type = "Sheep")
+                                if(tile.Type == "sheep")
                                 {
-                                    resouce = Sheep;
+                                    resource = "Sheep";
                                 }
-                                if(tile.Type = "tree")
+                                if(tile.Type == "tree")
                                 {
-                                    resouce = Wood;
+                                    resource = "Wood";
                                 }
-                                Point.Owner.AddResource(resource, amount);
+                                if(resource != "")
+                                {
+                                    point.Owner.AddResource(resource, amount);
+                                }
+                                
                                 MessageBox.Show(point.Owner.Username + " receives " +
                                     amount + " " + resource);
                             }
