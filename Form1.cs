@@ -766,8 +766,30 @@ namespace catan
             
                             if(amount > 0)
                             {
+                                string resource = "";
+                                if(tile.Type = "wheat")
+                                {
+                                    resouce = Wheat;
+                                }
+                                if(tile.Type = "Stone")
+                                {
+                                    resouce = Ore;
+                                }
+                                if(tile.Type = "Brick")
+                                {
+                                    resouce = Brick;
+                                }
+                                if(tile.Type = "Sheep")
+                                {
+                                    resouce = Sheep;
+                                }
+                                if(tile.Type = "tree")
+                                {
+                                    resouce = Wood;
+                                }
+                                Point.Owner.AddResource(resource, amount);
                                 MessageBox.Show(point.Owner.Username + " receives " +
-                                    amount + " " + tile.Type);
+                                    amount + " " + resource);
                             }
                         }
                     }
