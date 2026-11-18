@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
 
 namespace catan
 {
@@ -41,7 +40,6 @@ namespace catan
             TotalVictoryPoints = TVP;
             CreationDate = creationDate;
         }
-        
         public void AddResource(string resource, int amount)
         {
             if(resource == "Brick")
@@ -64,10 +62,6 @@ namespace catan
             {
                 Wood += amount;
             }
-        }
-        public int CountResources()
-        {
-            return Brick + Wood + Sheep + Wheat + Ore;
         }
     }
 }

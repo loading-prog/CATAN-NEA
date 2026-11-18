@@ -69,7 +69,6 @@ namespace catan
                 gameManager.Dice.roll();
             }*/
             gameManager.Board.DrawBoard();
-            gameManager.Theif = new Theif(gameManager.Board);
             gameManager.Dice.roll();
             gameManager.Board.FindingNeighbour();
             gameManager.Board.FindingBuildingPoints();
@@ -482,15 +481,7 @@ namespace catan
                 {
                     gameManager.Dice.roll();
                     gameManager.HasRolledDice = true;
-                    if(gameManager.Dice.total == 7)
-                    {
-                        MessageBox.Show("A 7 has been rolled! Move the Theif!");
-                    }
-                    else
-                    {
-                        GiveResources();
-                    }
-                        
+                    GiveResources();
                 }
                 
                 this.Invalidate();
@@ -605,11 +596,6 @@ namespace catan
                 { 
                     using Pen roadPen = new Pen(edge.RoadOwner.PlayerColour, 7);
                     g.DrawLine( roadPen, edge.Point1.Position, edge.Point2.Position);
-                }
-                if(gameManager.Theif != null && gameManager.Theif.CurrentTile != null)
-                {
-                    Tile tile = gameManager.Theif.CurrentTile; ;
-                    g.FillEllipse(Brushes.Black, tile.Center.X - 15, tile.Center.Y - 15, 30, 30);
                 }
             }
             if(hoveredEdge != null && hoveredPoint == null)
@@ -799,7 +785,7 @@ namespace catan
         {
             foreach(Tile tile in gameManager.Board.Tiles)
             {
-                if(tile.Probability == gameManager.Dice.total.ToString() && tile != Theif.CurrentTile)
+                if(tile.Probability == gameManager.Dice.total.ToString())
                 {
                     foreach(BuildingPoint point in tile.Corners)
                     {
