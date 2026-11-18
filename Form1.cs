@@ -317,7 +317,7 @@ namespace catan
                     }
                     else
                     {
-                        if(gameManger.GameMode == "Catan" && gameManager.GamePhase == "Normal" && gameManager.HasRolledDice == false)
+                        if(gameManager.GameMode == "Catan" && gameManager.GamePhase == "Normal" && gameManager.HasRolledDice == false)
                         {
                             MessageBox.Show("You must roll the dice before building");
                             return;
@@ -398,17 +398,21 @@ namespace catan
                 {
                     Player currentPlayer = gameManager.Players[gameManager.CurrentPlayerIndex];
                     bool placed = false;
+                    
                     if (gameManager.GameMode == "Catan" && gameManager.GamePhase == "Setup")
                     {
                         placed = gameManager.PlaceSetupRoad(currentPlayer, closestEdge);
                     }
-                    if (gameManager.GameMode == "Catan" && gameManager.GamePhase == "Setup" && gameManager.HasRolledDice == false)
-                    {
-                        MessageBox.Show("You must roll the dice before building.");
-                    }
                     else
                     {
-                        placed = gameManager.BuildRoad(currentPlayer, closestEdge);
+                        if (gameManager.GameMode == "Catan" && gameManager.GamePhase == "Setup" && gameManager.HasRolledDice == false)
+                        {
+                            MessageBox.Show("You must roll the dice before building.");
+                        }
+                        else
+                        {
+                            placed = gameManager.BuildRoad(currentPlayer, closestEdge);
+                        }
                     }
                     if (placed == true)
                     {
