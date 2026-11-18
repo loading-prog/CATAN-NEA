@@ -11,6 +11,7 @@ namespace catan
     {
         public Gameboard Board;
         public Dice Dice;
+        public Theif Theif;
         public List<Player> Players;
         public int CurrentPlayerIndex = 0;
         public string GameMode = "Catan";
