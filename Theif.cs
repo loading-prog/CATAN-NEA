@@ -88,7 +88,7 @@ namespace catan
         }
         public bool DiscardRescource(Player player, string resource)
         {
-            if(resource == "brick" && player.Brick > 0)
+            if(resource == "Brick" && player.Brick > 0)
             {
                 player.AddResource("Brick", -1);
                 return true;
