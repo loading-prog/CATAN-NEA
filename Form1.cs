@@ -555,8 +555,25 @@ namespace catan
 
                 g.DrawString(gameManager.Players[i].Username, PlayerFont, Brushes.SaddleBrown, Panelx + 45, Panely + 24);
             }
+            int CardY = PanelY+65;
+            int CardWidth = 40;
+            int CardHight = 48;
+            int CardGap = 23;
 
+            g.DrawIamge(BrickImage, Panelx + 15, CardY, CardWidthm CardHight);
+            g.DrawIamge(WoodImage, Panelx + 15 + (CardWidth + CardGap), CardY, CardWidthm CardHight);
+            g.DrawIamge(WheatImage, Panelx + 15 + (CardWidth + CardGap)*2, CardY, CardWidthm CardHight);
+            g.DrawIamge(OreImage, Panelx + 15 + (CardWidth + CardGap)*3, CardY, CardWidthm CardHight);
+            g.DrawIamge(SheeopImage, Panelx + 15 + (CardWidth + CardGap)*4, CardY, CardWidthm CardHight);
 
+            using Font ResourceFont = new Font("Georgia", 11, FontStyle.Bold);
+            
+            g.DrawString(gameManager.Players[i].Brick.ToString(), ResourceFont, Brushes.SaddleBrown, Panelx + 55, CardY + 15);
+            g.DrawString(gameManager.Players[i].Wood.ToString(), ResourceFont, Brushes.SaddleBrown, Panelx + 55 + (CardWidth + CardGap), CardY + 15);
+            g.DrawString(gameManager.Players[i].Sheep.ToString(), ResourceFont, Brushes.SaddleBrown, Panelx + 55 + (CardWidth + CardGap) * 2, CardY + 15);
+            g.DrawString(gameManager.Players[i].Wheat.ToString(), ResourceFont, Brushes.SaddleBrown, Panelx + 55 + (CardWidth + CardGap) * 3, CardY + 15);
+            g.DrawString(gameManager.Players[i].Ore.ToString(), ResourceFont, Brushes.SaddleBrown, Panelx + 55 + (CardWidth + CardGap) * 4, CardY + 15);
+            
             if (gameManager.Board == null) return;
 
             for (int i = 0; i < hexesToDraw; i++)
