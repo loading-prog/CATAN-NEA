@@ -555,16 +555,16 @@ namespace catan
 
                 g.DrawString(gameManager.Players[i].Username, PlayerFont, Brushes.SaddleBrown, Panelx + 45, Panely + 24);
             }
-            int CardY = PanelY+65;
+            int CardY = Panely +65;
             int CardWidth = 40;
-            int CardHight = 48;
+            int CardHeight = 48;
             int CardGap = 23;
 
-            g.DrawIamge(BrickImage, Panelx + 15, CardY, CardWidthm CardHight);
-            g.DrawIamge(WoodImage, Panelx + 15 + (CardWidth + CardGap), CardY, CardWidthm CardHight);
-            g.DrawIamge(WheatImage, Panelx + 15 + (CardWidth + CardGap)*2, CardY, CardWidthm CardHight);
-            g.DrawIamge(OreImage, Panelx + 15 + (CardWidth + CardGap)*3, CardY, CardWidthm CardHight);
-            g.DrawIamge(SheeopImage, Panelx + 15 + (CardWidth + CardGap)*4, CardY, CardWidthm CardHight);
+            g.DrawImage(BrickImage, Panelx + 15, CardY, CardWidth, CardHight);
+            g.DrawImage(WoodImage, Panelx + 15 + (CardWidth + CardGap), CardY, CardWidth, CardHight);
+            g.DrawImage(WheatImage, Panelx + 15 + (CardWidth + CardGap)*2, CardY, CardWidth, CardHight);
+            g.DrawImage(OreImage, Panelx + 15 + (CardWidth + CardGap)*3, CardY, CardWidth, CardHight);
+            g.DrawImage(SheepImage, Panelx + 15 + (CardWidth + CardGap)*4, CardY, CardWidth, CardHight);
 
             using Font ResourceFont = new Font("Georgia", 11, FontStyle.Bold);
             
