@@ -311,7 +311,10 @@ namespace catan
         private void Form1_Click(object? sender, EventArgs e)
         {
             MouseEventArgs mouse = (MouseEventArgs)e;
-
+            if (gameManager.GameOver == true)
+            {
+                return;
+            }
             int i = 0;
             while (i < gameManager.Board.BuildingPoints.Count)
             {
@@ -350,6 +353,10 @@ namespace catan
                     if (placed == true)
                     {
                         this.Invalidate();
+                        if(gameManager.GamePhase == "Normal" && gameManager.CheckWin(currentPlayer) == true)
+                        {
+                            MessageBox.Show(currentPlayer.Username + " has won the game with " + currentPlayer.TotalVictoryPoints + " Victory Points!", "Game Over!");
+                        }
                     }
                     break;
                 }
@@ -555,6 +562,8 @@ namespace catan
 
                 g.DrawString(gameManager.Players[i].Username, PlayerFont, Brushes.SaddleBrown, Panelx + 45, Panely + 24);
                 g.DrawString("VP: " + gameManager.Players[i].TotalVictoryPoints, PlayerFont, Brushes.SaddleBrown, Panelx + 245, Panely + 24);
+
+
                 int CardY = Panely + 65;
                 int CardWidth = 40;
                 int CardHeight = 48;
