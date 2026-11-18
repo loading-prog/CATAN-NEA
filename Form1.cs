@@ -34,13 +34,25 @@ namespace catan
 
 
         CatanGameManager gameManager;
+
+        Image BrickImage;
+        Image WoodImage;
+        Image WheatImage;
+        Image SheepImage;
+        Image OreImage;
         private Edge? hoveredEdge = null;
         private BuildingPoint? hoveredPoint = null;
         public Form1(bool isLoading)
         {
             InitializeComponent();
             this.DoubleBuffered = true;
-
+            
+            BrickImage = Image.FromFile(Path.Combine(AppContext.BaseDirectory, "Resources", "Brick.PNG"));
+            WoodImage = Image.FromFile(Path.Combine(AppContext.BaseDirectory, "Resources", "Wood.PNG"));
+            SheepImage = Image.FromFile(Path.Combine(AppContext.BaseDirectory, "Resources", "Sheep.PNG"));
+            WheatImage = Image.FromFile(Path.Combine(AppContext.BaseDirectory, "Resources", "Wheat.PNG"));
+            OreImage = Image.FromFile(Path.Combine(AppContext.BaseDirectory, "Resources", "Ore.PNG"));
+            
             this.Paint += form1_paint;
             this.MouseClick += Form1_Click;
             this.MouseMove += Form1_MouseMove;
