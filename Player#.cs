@@ -12,6 +12,13 @@ namespace catan
         public int TotalLosses { get; set; }
         public DateTime CreationDate { get; set; }
 
+        // Player Resources
+        public int Brick = 0;
+        public int Wood = 0;
+        public int Sheep = 0;
+        public int Wheat = 0;
+        public int Ore = 0;
+
       
         public Player(string username)
         {
@@ -29,6 +36,29 @@ namespace catan
             TotalWins = totalWins;
             TotalLosses = totalLosses;
             CreationDate = creationDate;
+        }
+        public void AddResource(string resource, int amount)
+        {
+            if(resource == "Brick")
+            {
+                Brick += amount
+            }
+            if(resource == "Ore")
+            {
+                Ore += amount
+            }
+            if(resource == "Wheat")
+            {
+                Wheat += amount
+            }
+            if(resource == "Sheep")
+            {
+                Sheep += amount
+            }
+            if(resource == "Wood")
+            {
+                Wood += amount
+            }
         }
     }
 }
