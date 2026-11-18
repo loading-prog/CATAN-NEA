@@ -46,23 +46,23 @@ namespace catan
             List<string> resources =new List<string>();
             for(int i  = 0; i < victim.Brick; i++)
             {
-                Resource.Add("Brick");
+                resources.Add("Brick");
             }
             for(int i  = 0; i < victim.Wood; i++)
             {
-                Resource.Add("Wood");
+                resources.Add("Wood");
             }
             for(int i  = 0; i < victim.Sheep; i++)
             {
-                Resource.Add("Sheep");
+                resources.Add("Sheep");
             }
             for(int i  = 0; i < victim.Wheat; i++)
             {
-                Resource.Add("Wheat");
+                resources.Add("Wheat");
             }
             for(int i  = 0; i < victim.Ore; i++)
             {
-                Resource.Add("Ore");
+                resources.Add("Ore");
             }
             if(resources.Count == 0)
             {
@@ -90,27 +90,27 @@ namespace catan
         {
             if(resource == "brick" && player.Brick >0)
             {
-                player.AddResource("Brick" -1);
+                player.AddResource("Brick", -1);
                 return true;
             }
-            if(resource == "Wood" && player.Brick >0)
+            if(resource == "Wood" && player.Wood >0)
             {
-                player.AddResource("Wood" -1);
+                player.AddResource("Wood", -1);
                 return true;
             }
-            if(resource == "Sheep" && player.Brick >0)
+            if(resource == "Sheep" && player.Sheep >0)
             {
-                player.AddResource("Sheep" -1);
+                player.AddResource("Sheep", -1);
                 return true;
             }
-            if(resource == "Wheat" && player.Brick >0)
+            if(resource == "Wheat" && player.Wheat >0)
             {
-                player.AddResource("Wheat" -1);
+                player.AddResource("Wheat", -1);
                 return true;
             }
-            if(resource == "Ore" && player.Brick >0)
+            if(resource == "Ore" && player.Ore >0)
             {
-                player.AddResource("Ore" -1);
+                player.AddResource("Ore", -1);
                 return true;
             }
             return false;
