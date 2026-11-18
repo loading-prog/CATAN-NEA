@@ -260,5 +260,15 @@ namespace catan
             player.TotalVictoryPoints += 1;
             return true;
         }
+        public bool GameOver = false;
+        public bool CheckWin(Player player)
+        {
+            if(player.TotalVictoryPoints >= 10 && GameOver == false)
+            {
+                GameOver = true;
+                return true;
+            }
+            return false;
+        }
     }
 }

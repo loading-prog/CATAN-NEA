@@ -554,7 +554,7 @@ namespace catan
                 g.FillRectangle(PlayerBrush, Panelx + 12, Panely + 12, 20, 60);
 
                 g.DrawString(gameManager.Players[i].Username, PlayerFont, Brushes.SaddleBrown, Panelx + 45, Panely + 24);
-
+                g.DrawString("VP: " + gameManager.Players[i].TotalVictoryPoints, PlayerFont, Brushes.SaddleBrown, Panelx + 245, Panely + 24);
                 int CardY = Panely + 65;
                 int CardWidth = 40;
                 int CardHeight = 48;
