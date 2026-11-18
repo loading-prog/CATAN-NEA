@@ -8,10 +8,17 @@ namespace catan
 {
     internal class Theif
     {
-        
-        public Theif()
+        public Tile? CurrentTile;
+        public Theif(Gameboard board)
         {
-
+            foreach(Tile tile in board.Tiles)
+            {
+                if( tile.Type == "desert")
+                {
+                    CurrentTile = tile;
+                    break;
+                }
+            }
         }
     }
 }
