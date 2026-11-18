@@ -108,7 +108,7 @@ namespace catan
                 player.AddResource("Wheat", -1);
                 return true;
             }
-            if(resource == "Ore" && player.Ore >  bbnnjju0)
+            if(resource == "Ore" && player.Ore > 0)
             {
                 player.AddResource("Ore", -1);
                 return true;
