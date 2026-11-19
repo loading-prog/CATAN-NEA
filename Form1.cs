@@ -69,7 +69,7 @@ namespace catan
                 gameManager.Dice.roll();
             }*/
             gameManager.Board.DrawBoard();
-            gameManager.Theif. = new Theif(gameManager.Board);
+            gameManager.Theif = new Theif(gameManager.Board);
             gameManager.Dice.roll();
             gameManager.Board.FindingNeighbour();
             gameManager.Board.FindingBuildingPoints();
@@ -316,28 +316,32 @@ namespace catan
             {
                 return;
             }
+            
             if (gameManager.WaitingForTheif == true)
             {
                 foreach (Tile tile in gameManager.Board.Tiles)
                 {
                     int distanceX = mouse.X - tile.Center.X;
                     int distanceY = mouse.Y - tile.Center.Y;
-
+            
                     if (distanceX * distanceX + distanceY * distanceY <= 2500)
                     {
-                        if(gameManager.Theif.MoveTheif(tile) == true)
+                        if (gameManager.Theif.MoveTheif(tile) == true)
                         {
                             MessageBox.Show("The robber has been moved!");
                             gameManager.FinishTheif();
                             this.Invalidate();
                         }
+                        else
+                        {
+                            MessageBox.Show("Choose a different tile");
+                        }
+            
+                        return;
                     }
-                    else
-                    {
-                        MessageBox.Show("Choose a different tile");
-                    }
-                    return;
                 }
+            
+                return;
             }
             int i = 0;
             while (i < gameManager.Board.BuildingPoints.Count)
@@ -505,10 +509,10 @@ namespace catan
                 {
                     gameManager.Dice.roll();
                     gameManager.HasRolledDice = true;
-                    gameManager.CheckTheif()
+                    gameManager.CheckTheif();
                     if(gameManager.Dice.total == 7)
                     {
-                        MessageBox.Show("You just rolled a 7! Move the robber!")
+                        MessageBox.Show("You just rolled a 7! Move the robber!");
                     }
                     else
                     {
