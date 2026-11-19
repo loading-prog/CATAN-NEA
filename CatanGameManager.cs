@@ -25,8 +25,8 @@ namespace catan
         {
 
             Board = new Gameboard();
-            Dice = new Dice(Board);
-            Theif = new Theif();
+            Dice = new Dice();
+            Theif = new Theif(Board);
             Players = new List<Player>();
             Players.Add(new Player(1, "dave", 0, 0, 0, 0, DateTime.Now)); //, Color.Red));
 
