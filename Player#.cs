@@ -63,5 +63,10 @@ namespace catan
                 Wood += amount;
             }
         }
+        public int GetTotalResources ()
+        {
+            int total = Brick + Wood + Sheep + Wheat + Ore;
+            return total;
+        }
     }
 }
