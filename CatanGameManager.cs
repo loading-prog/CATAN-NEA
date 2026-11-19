@@ -11,6 +11,8 @@ namespace catan
     {
         public Gameboard Board;
         public Dice Dice;
+        public Theif theif;
+        public bool WaitingForTheif = false;
         public List<Player> Players;
         public int CurrentPlayerIndex = 0;
         public string GameMode = "Catan";
@@ -24,6 +26,7 @@ namespace catan
 
             Board = new Gameboard();
             Dice = new Dice();
+            Theif = new Theif();
             Players = new List<Player>();
             Players.Add(new Player(1, "dave", 0, 0, 0, 0, DateTime.Now)); //, Color.Red));
 
@@ -68,6 +71,10 @@ namespace catan
             {
                    return;
             }
+            if(WaitingForTheif == true)
+            {
+                return;
+            }
             if(GameMode == "Catan" && GamePhase == "Normal" &&  HasRolledDice == false)
             {
                 return;
@@ -81,7 +88,17 @@ namespace catan
                 CurrentPlayerIndex = 0;
             }
         }
-
+        public void FinishTheif()
+        {
+            WaitingForTheif = false;
+        }
+        public void CheckTheif()
+        {
+            if(Dice.total == 7)
+            {
+                WaitingForTheif = true;
+            }
+        }
         public bool CanPlaceSetupSettlement(Player player, BuildingPoint point)
         { 
             if(GameMode != "Catan" || GamePhase != "Setup")
