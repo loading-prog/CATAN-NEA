@@ -1,16 +1,17 @@
+
 using System;
-using System.Window.Forms;
+using System.Windows.Forms;
 
 namespace catan
 {
-  internal class ResourceDiscardForm : Form
-  {
-    public ResourceDiscardForm
+    internal class ResourceDiscardForm : Form
     {
-      this.Text = "Discard Resources";
-      this.Width = 450;
-      this.Height = 400;
-      this.StartPosition = FormStartPosition.CenterScreen;
+        public ResourceDiscardForm()
+        {
+            this.Text = "Discard Resources";
+            this.Width = 450;
+            this.Height = 400;
+            this.StartPosition = FormStartPosition.CenterScreen;
+        }
     }
-  }
 }
