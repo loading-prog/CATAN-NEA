@@ -868,8 +868,7 @@ namespace catan
                                 if(resource != "")
                                 {
                                     point.Owner.AddResource(resource, amount);
-                                    MessageBox.Show(point.Owner.Username + " receives " +
-                                    amount + " " + resource);
+                                    MessageBox.Show(point.Owner.Username + " receives " + amount + " " + resource);
                                 }
                             }
                         }

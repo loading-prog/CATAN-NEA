@@ -281,7 +281,7 @@ namespace catan
 
             }
         }
-        public class Settlement
+        /*public class Settlement
         {
             public void DrawSettlemnt(object sender, PaintEventArgs e)
             {
@@ -307,6 +307,6 @@ namespace catan
                 //g.FillPolygon(brushBlack, [startx + 16, starty + 12], [startx + 8, starty + 20], [startx,starty+12]);
 
             }
-        }
+        }*/
     }
 }

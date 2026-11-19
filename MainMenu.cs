@@ -76,7 +76,13 @@ namespace catan
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
-
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "http://www.catan.com/understand-catan/game-rules",
+                UseShellExecute = true
+            });
+            //Go to that link
+            
         }
     }
 }
