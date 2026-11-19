@@ -69,6 +69,7 @@ namespace catan
                 gameManager.Dice.roll();
             }*/
             gameManager.Board.DrawBoard();
+            gameManager.Theif. = new Theif(gameManager.Board);
             gameManager.Dice.roll();
             gameManager.Board.FindingNeighbour();
             gameManager.Board.FindingBuildingPoints();
@@ -315,6 +316,29 @@ namespace catan
             {
                 return;
             }
+            if (gameManager.WaitingForTheif == true)
+            {
+                foreach (Tile tile in gameManager.Board.Tiles)
+                {
+                    int distanceX = mouse.X - tile.Center.X;
+                    int distanceY = mouse.Y - tile.Center.Y;
+
+                    if (distanceX * distanceX + distanceY * distanceY <= 2500)
+                    {
+                        if(gameManager.Theif.MoveTheif(tile) == true)
+                        {
+                            MessageBox.Show("The robber has been moved!");
+                            gameManager.FinishTheif();
+                            this.Invalidate();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Choose a different tile");
+                    }
+                    return;
+                }
+            }
             int i = 0;
             while (i < gameManager.Board.BuildingPoints.Count)
             {
@@ -481,7 +505,15 @@ namespace catan
                 {
                     gameManager.Dice.roll();
                     gameManager.HasRolledDice = true;
-                    GiveResources();
+                    gameManager.CheckTheif()
+                    if(gameManager.Dice.total == 7)
+                    {
+                        MessageBox.Show("You just rolled a 7! Move the robber!")
+                    }
+                    else
+                    {
+                        GiveResources();
+                    }
                 }
                 
                 this.Invalidate();
@@ -785,6 +817,10 @@ namespace catan
         {
             foreach(Tile tile in gameManager.Board.Tiles)
             {
+                if(gameManager.Theif.IsTileBlocked(tile) == true)
+                {
+                    continue;
+                }
                 if(tile.Probability == gameManager.Dice.total.ToString())
                 {
                     foreach(BuildingPoint point in tile.Corners)
