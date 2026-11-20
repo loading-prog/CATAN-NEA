@@ -44,7 +44,39 @@ namespace catan
                 resourceButton.Height = 35;
                 resourceButton.Location = new Point(20, 90 + (i * 45));
 
+                resourceButton.click += (Sender, e) =>
+                {
+                    if(resourcesLeft > 0)
+                    {
+                        if(theif.DiscardResources(player, resourcesButton.Text) == true)
+                        {
+                            resourcesLeft --;
+                            DiscardLabel.Text = "Resources Left to discard" + resourcesLeft;
+                            
+                            if(resourcesLeft == 0)
+                            {
+                                MessageBox.Show("All required resources have been discarded!");
+                                this.DialogResult = DialogResult.OK;
+                                this.Close();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("You do not have any" + resourceButton.Text + "to discard";)
+                        }
+                    }
+                };
+                this.FormClosing += (sender, e) =>
+                {
+                    if(resourcesLeft > 0)
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("You must discard all required resources before continuing.");
+                    }
+                };
+                
                 this.Controls.Add(resourceButton);
+                
             }
         }
     }
