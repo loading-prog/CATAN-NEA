@@ -377,6 +377,7 @@ namespace catan
                                     string stolenResource = gameManager.Theif.StealResource(victim, currentPlayer);
                             
                                     MessageBox.Show("You stole " + stolenResource + " from " + victim.Username + "!"+ "\n\n" + victim.Username + ": " + victimCardsBefore + " → " + victim.GetTotalResources() + " cards" + "\n" + currentPlayer.Username + ": " + currentPlayerCardsBefore + " → " + currentPlayer.GetTotalResources() + " cards","Resource Stolen!");
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information
                                     gameManager.FinishTheif();
                                 }
                             }
