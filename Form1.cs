@@ -219,6 +219,18 @@ namespace catan
             gameManager.WaitingForRoad = false;
             gameManager.LastPlacedSettlement = null;
             gameManager.HasRolledDice = false;
+            gameManager.WaitingForTheif = false;
+            gameManager.Theif = new Theif (gameManager.Board);
+
+            foreach (Player player in gameManager.Players)
+            {
+            player.Brick = 0;
+            player.Wood = 0;
+            player.Sheep = 0;
+            player.Wheat = 0;
+            player.Ore = 0;
+            player.TotalVictoryPoints = 0;
+            }
             
             if (gameManager.GameMode == "Catan")
             {
@@ -232,6 +244,9 @@ namespace catan
             hoveredPoint = null;
             this.Invalidate();
         }
+
+        
+        
         private void NextTurnButton_Click(object? sender, EventArgs e)
         {
             /*if (gameManager.Dice.DiceHold() = true)
