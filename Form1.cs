@@ -698,14 +698,14 @@ namespace catan
                 gameManager.Board.Tiles[i].Paint(e,utils: utils);
             }
 
-            if (gameManager.Theif.CurrentTile != null;
+            if (gameManager.Theif.CurrentTile != null)
             {
                 Tile robberTile = gameManager.Theif.CurrentTile;
 
                 int x = robberTile.Center.X + 61;
                 int y = robberTile.Center.Y - 29;
 
-                using Brush robberBrush = new solidBrush(Color.Black);
+                using Brush robberBrush = new SolidBrush(Color.Black);
                 using Pen robberBorder = new Pen(Color.White, 2);
 
                 g.FillEllipse(robberBrush, x - 12, y - 12, 24, 24);
