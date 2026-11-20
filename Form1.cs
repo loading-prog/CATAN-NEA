@@ -221,6 +221,7 @@ namespace catan
             gameManager.HasRolledDice = false;
             gameManager.WaitingForTheif = false;
             gameManager.Theif = new Theif (gameManager.Board);
+            gameManager.GameOver = false;
 
             foreach (Player player in gameManager.Players)
             {
