@@ -12,11 +12,12 @@ namespace catan
         private int resourcesLeft;
         private Label DiscardLabel;
         
-        public ResourceDiscardForm(Player player, int amountToDiscard, Theif currentTheif)
+        public ResourceDiscardForm(Player player, Theif currentTheif)
         {
             player = currentPlayer;
             theif = currentTheif;
-            resourcesLeft = theif.GetDiscardAmount(player);
+            resourcesLeft = theif.GetDiscardedAmount(player);
+            
             this.Text = "Discard Resources";
             this.Width = 450;
             this.Height = 400;
@@ -39,10 +40,12 @@ namespace catan
             {
                 Button resourceButton = new Button();
                 resourceButton.Text = resources[i];
-                resourcesButton.Width = 100;
-                resourcesButton.Height = 35;
-                resourcesButton.Location = new Point(20, 90, (i*45));
-                this.Controls.Add(resourcesButton);
+                resourceButton.Width = 100;
+                resourceButton.Height = 35;
+                resourceButton.Location = new Point(20, 90 + (i * 45));
+
+                this.Controls.Add(resourceButton);
+            }
         }
     }
 }
