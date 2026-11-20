@@ -329,9 +329,42 @@ namespace catan
                         if (gameManager.Theif.MoveTheif(tile) == true)
                         {
                             MessageBox.Show("The robber has been moved!");
-                            gameManager.FinishTheif();
                             this.Invalidate();
-                        }
+
+                            Player currentPlayer = gameManager.player[gameManager.CurrentPlayerIndex];
+                            List <Player> possibleVictims = new List<Player>();
+                            
+                            foreach (BuildingPoint Point in tile.Corners)
+                            {
+                                if(point.Owner != null && point.Owner != CurrentPlayer)
+                                {
+                                    if(possibleVictims.Contains(Point.Owner) == false;
+                                    {
+                                        possibleVictims.Add(point.Owner);
+                                    }
+                                }
+                            }
+                            foreach(Player Victim in PossibleVictims)
+                            {
+                                int totalResource = Victim.Brick + Victim.Wood + Victim.Sheep + Victim.Sheep + Victim.Ore;
+                                if(totalResource > 0)
+                                {
+                                    playersWithResources.Add(Victim)
+                                }
+                            }
+
+                            if (playersWithResources.Count == 0)
+                            {
+                                MessageBox.Show("There are no players to steal from");
+                                gameManger.FinishTheif();
+                            }
+                            else if (playersWithResources.Count == 1)
+                            {
+                                Player Victim = playersWithResources[0];
+                                string stolenResource = gameManger.Theif.StealResource(victim, currentPlayer);
+                                MessageBox.Show ("You stole" + stolenResource + "from" + victim.Username + "!");
+                                gameManager.FinishTheif();
+                            }
                         else
                         {
                             MessageBox.Show("Choose a different tile");
@@ -512,7 +545,16 @@ namespace catan
                     gameManager.CheckTheif();
                     if(gameManager.Dice.total == 7)
                     {
-                        MessageBox.Show("You just rolled a 7! Move the robber!");
+                        MessageBox.Show("You just rolled a 7! Players with more than 7 cards must discard half!");
+                        foreach(Player player in gameManager.players)
+                        {
+                            if(gameManager.Theif.GetDiscardedAmount(Player >0)
+                            {
+                                ResourceDiscardForm dicsard Form = new ResourceDiscardForm(player, gameManager.Theif);
+                                discardForm.showDialog
+                            }
+                        }
+                        MessageBox.Show("All discarding is complete! Move the Robber!");
                     }
                     else
                     {
