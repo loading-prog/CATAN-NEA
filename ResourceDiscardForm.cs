@@ -66,15 +66,16 @@ namespace catan
                         }
                     }
                 };
-                
-                this.FormClosing += (sender, e) =>
-                {
-                    if (resourcesLeft > 0)
-                    {
-                        e.Cancel = true;
-                        MessageBox.Show("You must discard all required resources before continuing.");
-                    }
-                };
+                this.Controls.Add(resourceButton);
             }
+            this.FormClosing += (sender, e) =>
+            {
+                if (resourcesLeft > 0)
+                {
+                    e.Cancel = true;
+                    MessageBox.Show("You must discard all required resources before continuing.");
+                }
+            };
         }
     }
+}
