@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace catan
 {
     public partial class MainMenu : Form
     {
+        bool clicked = false;
         public MainMenu()
         {
             //DataBaseHelper.initializeDataBase();
@@ -72,17 +74,30 @@ namespace catan
         private void Title_Click(object sender, EventArgs e)
         {
 
+            GameRules gr = new GameRules();
+            gr.Show();
+
+         
+        /*    if (clicked)
+            {
+                return;
+            }
+            else
+            {
+                clicked = true;
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = "http://www.catan.com/understand-catan/game-rules",
+                    UseShellExecute = true
+                });
+            }*/
+            //Go to that link
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
-            {
-                FileName = "http://www.catan.com/understand-catan/game-rules",
-                UseShellExecute = true
-            });
-            //Go to that link
             
+
         }
     }
 }
