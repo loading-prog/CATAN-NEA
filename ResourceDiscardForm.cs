@@ -12,7 +12,7 @@ namespace catan
         private int resourcesLeft;
         private Label DiscardLabel;
         
-        public ResourceDiscardForm(Player player, Theif currentTheif)
+        public ResourceDiscardForm(Player currentPlayer, Theif currentTheif)
         {
             player = currentPlayer;
             theif = currentTheif;
@@ -24,7 +24,7 @@ namespace catan
             this.StartPosition = FormStartPosition.CenterScreen;
 
             Label playerLabel = new Label();
-            playerLabel.Text = "Player: " + player.Name;
+            playerLabel.Text = "Player: " + player.Username;
             playerLabel.Location = new Point(20, 20);
             playerLabel.AutoSize = true;
             this.Controls.Add(playerLabel);
