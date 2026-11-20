@@ -7,24 +7,42 @@ namespace catan
 {
     internal class ResourceDiscardForm : Form
     {                
-        public ResourceDiscardForm(Player player, int amountToDiscard)
+        private Player player; 
+        private Theif theif;
+        private int resourcesLeft;
+        private Label DiscardLabel;
+        
+        public ResourceDiscardForm(Player player, int amountToDiscard, Theif currentTheif)
         {
+            player = currentPlayer;
+            theif = currentTheif;
+            resourcesLeft = theif.GetDiscardAmount(player);
             this.Text = "Discard Resources";
             this.Width = 450;
             this.Height = 400;
             this.StartPosition = FormStartPosition.CenterScreen;
 
             Label playerLabel = new Label();
-            playerLabel.Text = "Player: " + player.Username;
+            playerLabel.Text = "Player: " + player.Name;
             playerLabel.Location = new Point(20, 20);
             playerLabel.AutoSize = true;
             this.Controls.Add(playerLabel);
 
-            Label DiscardLabel = new Label();
-            DiscardLabel.Text = "Resources Left to Discard: " + amountToDiscard;
+            DiscardLabel = new Label();
+            DiscardLabel.Text = "Resources Left to Discard: " + resourcesLeft;
             DiscardLabel.Location = new Point(20, 55);
             DiscardLabel.AutoSize = true;
             this.Controls.Add(DiscardLabel);
+
+            string[] resources = { "Brick", "Wood", "Sheep", "Wheat", "Ore"};
+            for (int i = 0; i < resources.Length; i++)
+            {
+                Button resourceButton = new Button();
+                resourceButton.Text = resources[i];
+                resourcesButton.Width = 100;
+                resourcesButton.Height = 35;
+                resourcesButton.Location = new Point(20, 90, (i*45));
+                this.Controls.Add(resourcesButton);
         }
     }
 }
