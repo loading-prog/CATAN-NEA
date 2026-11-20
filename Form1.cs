@@ -326,7 +326,7 @@ namespace catan
             
                     if (distanceX * distanceX + distanceY * distanceY <= 2500)
                     {
-                        (gameManager.Theif.MoveTheif(tile) == true)
+                        if (gameManager.Theif.MoveTheif(tile) == true)
                         {
                             MessageBox.Show("The robber has been moved!");
                             this.Invalidate();
@@ -554,10 +554,10 @@ namespace catan
                         MessageBox.Show("You just rolled a 7! Players with more than 7 cards must discard half!");
                         foreach(Player player in gameManager.Players)
                         {
-                            if(gameManager.Theif.GetDiscardedAmount(Player >0)
+                            if (gameManager.Theif.GetDiscardedAmount(player) > 0)
                             {
-                                ResourceDiscardForm dicsard Form = new ResourceDiscardForm(player, gameManager.Theif);
-                                discardForm.ShowDialog
+                                ResourceDiscardForm discardForm = new ResourceDiscardForm(player, gameManager.Theif);
+                                discardForm.ShowDialog();
                             }
                         }
                         MessageBox.Show("All discarding is complete! Move the Robber!");
