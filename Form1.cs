@@ -321,8 +321,8 @@ namespace catan
             {
                 foreach (Tile tile in gameManager.Board.Tiles)
                 {
-                    int distanceX = mouse.X - tile.Center.X;
-                    int distanceY = mouse.Y - tile.Center.Y;
+                    int distanceX = mouse.X - (tile.Center.X + 61);
+                    int distanceY = mouse.Y - (tile.Center.Y - 29);
             
                     if (distanceX * distanceX + distanceY * distanceY <= 2500)
                     {
@@ -377,7 +377,6 @@ namespace catan
                                     string stolenResource = gameManager.Theif.StealResource(victim, currentPlayer);
                             
                                     MessageBox.Show("You stole " + stolenResource + " from " + victim.Username + "!"+ "\n\n" + victim.Username + ": " + victimCardsBefore + " → " + victim.GetTotalResources() + " cards" + "\n" + currentPlayer.Username + ": " + currentPlayerCardsBefore + " → " + currentPlayer.GetTotalResources() + " cards","Resource Stolen!");
-                                    MessageBoxButtons.OK, MessageBoxIcon.Information
                                     gameManager.FinishTheif();
                                 }
                             }
@@ -684,6 +683,20 @@ namespace catan
                 gameManager.Board.Tiles[i].Paint(e,utils: utils);
             }
 
+            if (gameManager.Theif.CurrentTile != null;
+            {
+                Tile robberTile = gameManager.Theif.CurrentTile;
+
+                int x = robberTile.Center.X + 61;
+                int y = robberTile.Center.Y - 29;
+
+                using Brush robberBrush = new solidBrush(Color.Black);
+                using Pen robberBorder = new Pen(Color.White, 2);
+
+                g.FillEllipse(robberBrush, x - 12, y - 12, 24, 24);
+                g.DrawEllipse(robberBorder, x - 12, y - 12, 24, 24);
+            }
+            
             foreach(Edge edge in gameManager.Board.Edges)
             {
                 if(edge.RoadOwner != null)
