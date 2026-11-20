@@ -357,19 +357,28 @@ namespace catan
                                     playersWithResources.Add(victim);
                                 }
                             }
-                        
                             if (playersWithResources.Count == 0)
                             {
                                 MessageBox.Show("There are no players to steal from.");
                                 gameManager.FinishTheif();
                             }
-                            else if (playersWithResources.Count == 1)
+                            else
                             {
-                                Player victim = playersWithResources[0];
-                                string stolenResource = gameManager.Theif.StealResource(victim, currentPlayer);
-                        
-                                MessageBox.Show("You stole " + stolenResource + " from " + victim.Username + "!");
-                                gameManager.FinishTheif();
+                                RobberSelectionForm selectionForm = new RobberSelectionForm(playersWithResources);
+                                selectionForm.ShowDialog();
+                            
+                                Player victim = selectionForm.SelectedVictim;
+                            
+                                if (victim != null)
+                                {
+                                    int victimCardsBefore = victim.GetTotalResources();
+                                    int currentPlayerCardsBefore = currentPlayer.GetTotalResources();
+                            
+                                    string stolenResource = gameManager.Theif.StealResource(victim, currentPlayer);
+                            
+                                    MessageBox.Show("You stole " + stolenResource + " from " + victim.Username + "!"+ "\n\n" + victim.Username + ": " + victimCardsBefore + " → " + victim.GetTotalResources() + " cards" + "\n" + currentPlayer.Username + ": " + currentPlayerCardsBefore + " → " + currentPlayer.GetTotalResources() + " cards","Resource Stolen!");
+                                    gameManager.FinishTheif();
+                                }
                             }
                         }
                         else
