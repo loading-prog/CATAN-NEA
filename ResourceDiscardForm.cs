@@ -67,9 +67,6 @@ namespace catan
                     }
                 };
                 
-                this.Controls.Add(resourceButton);
-                }
-                
                 this.FormClosing += (sender, e) =>
                 {
                     if (resourcesLeft > 0)
@@ -81,4 +78,3 @@ namespace catan
             }
         }
     }
-}
