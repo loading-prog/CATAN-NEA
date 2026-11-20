@@ -326,50 +326,56 @@ namespace catan
             
                     if (distanceX * distanceX + distanceY * distanceY <= 2500)
                     {
-                        if (gameManager.Theif.MoveTheif(tile) == true)
+                        (gameManager.Theif.MoveTheif(tile) == true)
                         {
                             MessageBox.Show("The robber has been moved!");
                             this.Invalidate();
-
-                            Player currentPlayer = gameManager.player[gameManager.CurrentPlayerIndex];
-                            List <Player> possibleVictims = new List<Player>();
-                            
-                            foreach (BuildingPoint Point in tile.Corners)
+                        
+                            Player currentPlayer = gameManager.Players[gameManager.CurrentPlayerIndex];
+                            List<Player> possibleVictims = new List<Player>();
+                        
+                            foreach (BuildingPoint point in tile.Corners)
                             {
-                                if(point.Owner != null && point.Owner != CurrentPlayer)
+                                if (point.Owner != null && point.Owner != currentPlayer)
                                 {
-                                    if(possibleVictims.Contains(Point.Owner) == false;
+                                    if (possibleVictims.Contains(point.Owner) == false)
                                     {
                                         possibleVictims.Add(point.Owner);
                                     }
                                 }
                             }
-                            foreach(Player Victim in PossibleVictims)
+                        
+                            List<Player> playersWithResources = new List<Player>();
+                        
+                            foreach (Player victim in possibleVictims)
                             {
-                                int totalResource = Victim.Brick + Victim.Wood + Victim.Sheep + Victim.Sheep + Victim.Ore;
-                                if(totalResource > 0)
+                                int totalResources = victim.Brick + victim.Wood + victim.Sheep
+                                                   + victim.Wheat + victim.Ore;
+                        
+                                if (totalResources > 0)
                                 {
-                                    playersWithResources.Add(Victim)
+                                    playersWithResources.Add(victim);
                                 }
                             }
-
+                        
                             if (playersWithResources.Count == 0)
                             {
-                                MessageBox.Show("There are no players to steal from");
-                                gameManger.FinishTheif();
+                                MessageBox.Show("There are no players to steal from.");
+                                gameManager.FinishTheif();
                             }
                             else if (playersWithResources.Count == 1)
                             {
-                                Player Victim = playersWithResources[0];
-                                string stolenResource = gameManger.Theif.StealResource(victim, currentPlayer);
-                                MessageBox.Show ("You stole" + stolenResource + "from" + victim.Username + "!");
+                                Player victim = playersWithResources[0];
+                                string stolenResource = gameManager.Theif.StealResource(victim, currentPlayer);
+                        
+                                MessageBox.Show("You stole " + stolenResource + " from " + victim.Username + "!");
                                 gameManager.FinishTheif();
                             }
+                        }
                         else
                         {
                             MessageBox.Show("Choose a different tile");
                         }
-            
                         return;
                     }
                 }
@@ -546,12 +552,12 @@ namespace catan
                     if(gameManager.Dice.total == 7)
                     {
                         MessageBox.Show("You just rolled a 7! Players with more than 7 cards must discard half!");
-                        foreach(Player player in gameManager.players)
+                        foreach(Player player in gameManager.Players)
                         {
                             if(gameManager.Theif.GetDiscardedAmount(Player >0)
                             {
                                 ResourceDiscardForm dicsard Form = new ResourceDiscardForm(player, gameManager.Theif);
-                                discardForm.showDialog
+                                discardForm.ShowDialog
                             }
                         }
                         MessageBox.Show("All discarding is complete! Move the Robber!");
