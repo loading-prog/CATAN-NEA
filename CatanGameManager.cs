@@ -12,6 +12,7 @@ namespace catan
         public Gameboard Board;
         public Dice Dice;
         public Theif Theif;
+        public DevelopmentCardDeck DevelopmentDeck;
         public bool WaitingForTheif = false;
         public List<Player> Players;
         public int CurrentPlayerIndex = 0;
@@ -26,6 +27,7 @@ namespace catan
 
             Board = new Gameboard();
             Dice = new Dice();
+            DevelopmentDeck = new DevelopmentCardDeck();
             Theif = new Theif(Board);
             Players = new List<Player>();
             Players.Add(new Player(1, "dave", 0, 0, 0, 0, DateTime.Now)); //, Color.Red));
