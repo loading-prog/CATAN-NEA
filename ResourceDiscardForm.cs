@@ -35,7 +35,7 @@ namespace catan
             DiscardLabel.AutoSize = true;
             this.Controls.Add(DiscardLabel);
 
-            string[] resources = { "Brick", "Wood", "Sheep", "Wheat", "Ore"};
+            string[] resources = { "Brick", "Wood", "Wheat", "Ore", "Sheep"};
             for (int i = 0; i < resources.Length; i++)
             {
                 Button resourceButton = new Button();

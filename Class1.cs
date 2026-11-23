@@ -1,0 +1,106 @@
+﻿/*using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace catan
+{
+    internal class Class1
+    {
+        {
+  "deckName": "Catan Base Game Development Cards",
+  "totalCards": 25,
+  "cost": {
+    "Ore": 1,
+    "Grain": 1,
+    "Wool": 1
+  },
+  "cards": [
+    {
+      "id": "knight",
+      "name": "Knight",
+      "category": "Knight",
+      "count": 14,
+      "victoryPoints": 0,
+      "canPlaySameTurn": false,
+      "description": "Move the robber. Steal 1 resource card from the owner of an adjacent settlement or city."
+    },
+    {
+      "id": "road_building",
+      "name": "Road Building",
+      "category": "Progress",
+      "count": 2,
+      "victoryPoints": 0,
+      "canPlaySameTurn": false,
+      "description": "Place 2 new roads as if you had just built them."
+    },
+    {
+    "id": "year_of_plenty",
+      "name": "Year of Plenty",
+      "category": "Progress",
+      "count": 2,
+      "victoryPoints": 0,
+      "canPlaySameTurn": false,
+      "description": "Take any 2 resource cards from the bank and add them to your hand."
+    },
+    {
+    "id": "monopoly",
+      "name": "Monopoly",
+      "category": "Progress",
+      "count": 2,
+      "victoryPoints": 0,
+      "canPlaySameTurn": false,
+      "description": "Announce 1 type of resource. All other players must give you all of their resource cards of that type."
+    },
+    {
+    "id": "vp_chapel",
+      "name": "Chapel",
+      "category": "VictoryPoint",
+      "count": 1,
+      "victoryPoints": 1,
+      "canPlaySameTurn": true,
+      "description": "1 Victory Point! Reveal this card only when you have 10 or more points to win the game."
+    },
+    {
+    "id": "vp_library",
+      "name": "Library",
+      "category": "VictoryPoint",
+      "count": 1,
+      "victoryPoints": 1,
+      "canPlaySameTurn": true,
+      "description": "1 Victory Point! Reveal this card only when you have 10 or more points to win the game."
+    },
+    {
+    "id": "vp_market",
+      "name": "Market",
+      "category": "VictoryPoint",
+      "count": 1,
+      "victoryPoints": 1,
+      "canPlaySameTurn": true,
+      "description": "1 Victory Point! Reveal this card only when you have 10 or more points to win the game."
+    },
+    {
+    "id": "vp_palace",
+      "name": "Palace",
+      "category": "VictoryPoint",
+      "count": 1,
+      "victoryPoints": 1,
+      "canPlaySameTurn": true,
+      "description": "1 Victory Point! Reveal this card only when you have 10 or more points to win the game."
+    },
+    {
+    "id": "vp_university",
+      "name": "University",
+      "category": "VictoryPoint",
+      "count": 1,
+      "victoryPoints": 1,
+      "canPlaySameTurn": true,
+      "description": "1 Victory Point! Reveal this card only when you have 10 or more points to win the game."
+    }
+  ]
+}
+
+    }
+}
+*/
