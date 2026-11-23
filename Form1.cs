@@ -802,6 +802,10 @@ namespace catan
                 if(gameManager.GameMode == "Catan" && gameManager.GamePhase == "Setup")
                 {
                     canPlaceSettlement = gameManager.CanPlaceSetupSettlement(currentPlayer, hoveredPoint);
+                }
+                else
+                {
+                    canPlaceSettlement = gameManager.CanPlaceSettlement(hoveredPoint);
                     bool ConnectedRoad = false;
                     foreach ( Edge edge in hoveredPoint.Edges)
                     {
