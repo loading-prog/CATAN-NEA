@@ -346,6 +346,7 @@ namespace catan
             player.Sheep -= 1;
             player.Wheat -= 1;
 
+            card.BoughtThisTurn = true;
             player.DevelopmentCards.Add(card);
             return true;
         }
