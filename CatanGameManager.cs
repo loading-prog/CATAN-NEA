@@ -170,6 +170,19 @@ namespace catan
             }
             if(GamePhase == "Normal")
             {
+                bool ConnectedRoad == false;
+                foreach (Edge edge in point.Edges)
+                {
+                    if(edge.RoadOwner == player)
+                    {
+                        ConnectedRoad = true;
+                    }
+                }
+                if (ConnectedRoads = false)
+                {
+                    return false;
+                }
+            
                 if(player.Brick < 1 || player.Wood < 1 || player.Sheep < 1 || player.Wheat < 1)
                 {
                     return false;
