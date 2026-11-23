@@ -178,7 +178,7 @@ namespace catan
                         ConnectedRoad = true;
                     }
                 }
-                if (ConnectedRoad = false)
+                if (ConnectedRoad == false)
                 {
                     return false;
                 }
