@@ -94,6 +94,10 @@ namespace catan
             {
                 card.BoughtThisTurn = false;
             }
+
+            CurrentPlayerIndex++;
+            HasRolledDice = false;
+            HasPlayedDevelopmentCard = false;
             if (CurrentPlayerIndex >= Players.Count)
             {
                 CurrentPlayerIndex = 0;
@@ -361,12 +365,18 @@ namespace catan
             {
                 return false;
             }
+            if(card.CardType == "Knight")
+            {
+                KnightsPlayed[CurrentPlayerIndex]++;
+                CheckLargestArmy();
+            }
+            
             HasPlayedDevelopmentCard = true;
             player.DevelopmentCards.Remove(card);
             return true;
         }
 
-        public bool CheckLargestArmy()
+        public void CheckLargestArmy()
         {
             int playerIndex = CurrentPlayerIndex;
             if (KnightsPlayed[playerIndex] < 3)
@@ -417,12 +427,7 @@ namespace catan
             player.Ore -=1;
             player.Sheep -= 1;
             player.Wheat -= 1;
-
-
-            if(card.CardType == "Knight")
-            {
-                KnightsPlayed[CurrentPlayerIndex]++;
-            }
+            
             card.BoughtThisTurn = true;
             player.DevelopmentCards.Add(card);
             return true;
