@@ -320,7 +320,7 @@ namespace catan
             {
                 return false;
             }
-            if (hasRolledDice == false)
+            if (HasRolledDice == false)
             {
                 return false;
             }
