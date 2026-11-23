@@ -23,6 +23,32 @@ namespace catan
       Cards.Add(new DevelopmentCard("Market", "VictoryPoint", 1));
       Cards.Add(new DevelopmentCard("Palace", "VictoryPoint", 1));
       Cards.Add(new DevelopmentCard("University", "VictoryPoint", 1));
+
+      Shuffled();
+    }
+
+    public void Shuffle ()
+    {
+      Random random = new Random();
+      for (int i = Card.Count -1; i >0; i++)
+      {
+        int randomIndex = random.Next(i + 1);
+        DevelopmentCard temp = Cards[i];
+        Cards[i] = Cards[randomIndex];
+        Cards[randomIndex] = temp;
+      }
+    }
+
+    public DevelopmentCard? DrawCard();
+    {
+      if(Cards.Count == 0)
+      {
+        return null;
+      }
+
+      DevelopmentCard drawnCard = Cards[0];
+      Cards.RemoveAt(0);
+      return drawnCard;
     }
   }
 }
