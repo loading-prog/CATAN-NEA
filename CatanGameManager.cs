@@ -170,7 +170,7 @@ namespace catan
             }
             if(GamePhase == "Normal")
             {
-                bool ConnectedRoad == false;
+                bool ConnectedRoad = false;
                 foreach (Edge edge in point.Edges)
                 {
                     if(edge.RoadOwner == player)
@@ -178,7 +178,7 @@ namespace catan
                         ConnectedRoad = true;
                     }
                 }
-                if (ConnectedRoads = false)
+                if (ConnectedRoad = false)
                 {
                     return false;
                 }
