@@ -164,14 +164,19 @@ namespace catan
         }
         public bool PlaceSettlement(Player player, BuildingPoint point)
         {
-            /*if (GameMode == "Catan" && GamePhase == "Setup")
-            {
-                return false;
-            }*/
             if (CanPlaceSettlement(point) == false)
             {
                 return false;
             }
+            if(player.Brick < 1 || player.Sheep < 1; || player.Ore < 1; || player.Wheat < 1)
+            {
+                return false;
+            }
+            player.Brick -= 1;
+            player.Sheep -= 1;
+            player.Ore -= 1;
+            player.Wheat -= 1;
+            
             point.Owner = player;
             point.BuildingType = "Settlement";
             player.TotalVictoryPoints += 1;
@@ -279,6 +284,13 @@ namespace catan
             {
                 return false;
             }
+            if(player.Ore < 3 || player.Wheat < 2);
+            {
+                return false;
+            }
+            player.Ore -= 3;
+            player.Wheat -= 2;
+            
             point.BuildingType = "City";
             player.TotalVictoryPoints += 1;
             return true;
