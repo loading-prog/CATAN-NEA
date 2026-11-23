@@ -332,9 +332,9 @@ namespace catan
             {
                 return false;
             }
-            DevelopmentCard? card = DevelopmenDeck.DrawCard();
+            DevelopmentCard? card = DevelopmentDeck.DrawCard();
 
-            if(Card == null)
+            if(card == null)
             {
                 return false;
             }
@@ -342,7 +342,7 @@ namespace catan
             player.Sheep -= 1;
             player.Wheat -= 1;
 
-            player.DevelopmentCard.Add(card)
+            player.DevelopmentCards.Add(card)
             return true;
         }
         public bool GameOver = false;
