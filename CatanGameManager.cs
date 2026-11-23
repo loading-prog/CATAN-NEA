@@ -94,11 +94,12 @@ namespace catan
             {
                 card.BoughtThisTurn = false;
             }
-
+            
             CurrentPlayerIndex++;
             HasRolledDice = false;
             HasPlayedDevelopmentCard = false;
-            if (CurrentPlayerIndex >= Players.Count)
+            
+            if(CurrentPlayerIndex >= Players.Count)
             {
                 CurrentPlayerIndex = 0;
             }
