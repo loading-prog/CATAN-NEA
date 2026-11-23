@@ -93,7 +93,7 @@ namespace catan
             foreach(DevelopmentCard card in currentPlayer.DevelopmentCards)
             {
                 card.BoughtThisTurn = false;
-            
+            }
             if (CurrentPlayerIndex >= Players.Count)
             {
                 CurrentPlayerIndex = 0;
@@ -323,7 +323,7 @@ namespace catan
             return true;
         }
 
-        public bool CanPlayDevelopmentCard(Player player,DevlopmentCard card)
+        public bool CanPlayDevelopmentCard(Player player,DevelopmentCard card)
         {
             if (GamePhase != "Normal")
             {
@@ -369,7 +369,7 @@ namespace catan
         public bool CheckLargestArmy()
         {
             int playerIndex = CurrentPlayerIndex;
-            if (KnightsPlayed[playerIndex] < 3;)
+            if (KnightsPlayed[playerIndex] < 3)
             {
                 return;
             }
@@ -379,7 +379,7 @@ namespace catan
                 Players[playerIndex].TotalVictoryPoints += 2;
                 return;
             }
-            if(KnightsPlayed[playerIndex] > KnightsPlayed[LargestArmyIndex])
+            if(KnightsPlayed[playerIndex] > KnightsPlayed[LargestArmyPlayerIndex])
             {
                 Players[LargestArmyPlayerIndex].TotalVictoryPoints -= 2;
                 LargestArmyPlayerIndex = playerIndex;
