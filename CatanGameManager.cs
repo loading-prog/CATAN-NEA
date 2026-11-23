@@ -320,6 +320,10 @@ namespace catan
             {
                 return false;
             }
+            if (hasRolledDice == false)
+            {
+                return false;
+            }
             if (player != Players[CurrentPlayerIndex])
             {
                 return false;
