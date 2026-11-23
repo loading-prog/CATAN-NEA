@@ -342,7 +342,7 @@ namespace catan
             player.Sheep -= 1;
             player.Wheat -= 1;
 
-            player.DevelopmentCards.Add(card)
+            player.DevelopmentCards.Add(card);
             return true;
         }
         public bool GameOver = false;
