@@ -6,16 +6,16 @@ namespace catan
   class DevelopmentCardDeck
   {
     public List<DevelopmentCard> Cards = new List<DevelopmentCard> ();
-    public DevelopmentCardDeck();
+    public DevelopmentCardDeck()
     {
       for(int i = 0; i < 14; i ++)
       {
         Cards.Add(new DevelopmentCard("Knight", "Knight", 0));
       }
-      for(int i = 0; i < 2; i++
+      for(int i = 0; i < 2; i++)
       {
         Cards.Add(new DevelopmentCard("Road Building", "Progress", 0));
-        Cards.Add(new DevelopmentCard("Years of Plenty", "Progress", 0));
+        Cards.Add(new DevelopmentCard("Year of Plenty", "Progress", 0));
         Cards.Add(new DevelopmentCard("Monopoly", "Progress", 0));
       }
       Cards.Add(new DevelopmentCard("Chapel", "VictoryPoint", 1));
