@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace catan
 {
@@ -20,6 +21,7 @@ namespace catan
         public int Wheat = 0;
         public int Ore = 0;
 
+        public List<DevelopmentCard> DevelopmentCards = new List<DevelopmentCard>();
       
         public Player(string username)
         {
