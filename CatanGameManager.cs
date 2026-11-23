@@ -168,15 +168,16 @@ namespace catan
             {
                 return false;
             }
-            if (GamePhase == "Normal)
+            if(GamePhase == "Normal")
             {
-                if (player.Brick < 1 || player.Sheep < 1 || player.Ore < 1 || player.Wheat < 1)
+                if(player.Brick < 1 || player.Wood < 1 || player.Sheep < 1 || player.Wheat < 1)
                 {
                     return false;
                 }
+            
                 player.Brick -= 1;
+                player.Wood -= 1;
                 player.Sheep -= 1;
-                player.Ore -= 1;
                 player.Wheat -= 1;
             }
             point.Owner = player;
