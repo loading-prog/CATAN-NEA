@@ -168,15 +168,17 @@ namespace catan
             {
                 return false;
             }
-            if(player.Brick < 1 || player.Sheep < 1 || player.Ore < 1 || player.Wheat < 1)
+            if (GamePhase == "Normal)
             {
-                return false;
+                if (player.Brick < 1 || player.Sheep < 1 || player.Ore < 1 || player.Wheat < 1)
+                {
+                    return false;
+                }
+                player.Brick -= 1;
+                player.Sheep -= 1;
+                player.Ore -= 1;
+                player.Wheat -= 1;
             }
-            player.Brick -= 1;
-            player.Sheep -= 1;
-            player.Ore -= 1;
-            player.Wheat -= 1;
-            
             point.Owner = player;
             point.BuildingType = "Settlement";
             player.TotalVictoryPoints += 1;
