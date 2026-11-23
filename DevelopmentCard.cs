@@ -7,7 +7,7 @@ namespace catan
     public string Name { get; set;}
     public string CardType { get; set;}
     public int VictoryPoints { get; set;}
-    public bool BoughtThisTurn { get; set;}
+    public bool BoughtThisTurn { get; set;} = false;
     public DevelopmentCard (string name, string cardType, int victoryPoints)
     {
       Name = name;
