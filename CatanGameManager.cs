@@ -260,6 +260,12 @@ namespace catan
                {
                    return false;
                }
+            if(player.Brick < 1 || player.Wood < 1)
+            {
+                return false;
+            }
+            player.Brick -= 1;
+            player.Wood -= 1;
             edgeClicked.RoadOwner = player;
             return true;
         }
