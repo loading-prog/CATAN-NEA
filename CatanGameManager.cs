@@ -22,6 +22,9 @@ namespace catan
         public bool WaitingForRoad = false;
         public BuildingPoint? LastPlacedSettlement = null;
         public bool HasRolledDice = false;
+        public bool HasPlayedDevelopmentCard = false;
+        public int[] KnightsPlayed = new int[3];
+        public int LargestArmyPlayerIndex = -1;
         public CatanGameManager()
         {
 
@@ -84,6 +87,12 @@ namespace catan
             
             CurrentPlayerIndex++;
             HasRolledDice = false;
+            HasPlayedDevelopmentCard = false; 
+            
+            Player currentPlayer = Players[CurrentPlayerIndex];
+            foreach(DevelopmentCard card in currentPlayer.DevelopmentCards)
+            {
+                card.BoughtThisTurn = false;
             
             if (CurrentPlayerIndex >= Players.Count)
             {
@@ -314,6 +323,69 @@ namespace catan
             return true;
         }
 
+        public bool CanPlayDevelopmentCard(Player player,DevlopmentCard card)
+        {
+            if (GamePhase != "Normal")
+            {
+                return false;
+            }
+            if(HasRolledDice == false)
+            {
+                return false;
+            }
+            if (player != Players[CurrentPlayerIndex])
+            {
+                return false;
+            }
+            if (player.DevelopmentCards.Contains(card) == false)
+            {
+                return false;
+            }
+            if (card.BoughtThisTurn == true)
+            {
+                return false;
+            }
+            if (HasPlayedDevelopmentCard == true)
+            {
+                return false;
+            }
+            if (card.CardType == "VictoryPoint")
+            {
+                return false;
+            }
+            return true;
+        }
+        public bool PlayDevelopmentCard (Player player, DevelopmentCard card)
+        {
+            if (CanPlayDevelopmentCard(player, card) == false)
+            {
+                return false;
+            }
+            HasPlayedDevelopmentCard = true;
+            player.DevelopmentCards.Remove(card);
+            return true;
+        }
+
+        public bool CheckLargestArmy()
+        {
+            int playerIndex = CurrentPlayerIndex;
+            if (KnightsPlayed[playerIndex] < 3;)
+            {
+                return;
+            }
+            if(LargestArmyPlayerIndex == -1)
+            {
+                LargestArmyPlayerIndex = playerIndex;
+                Players[playerIndex].TotalVictoryPoints += 2;
+                return;
+            }
+            if(KnightsPlayed[playerIndex] > KnightsPlayed[LargestArmyIndex])
+            {
+                Players[LargestArmyPlayerIndex].TotalVictoryPoints -= 2;
+                LargestArmyPlayerIndex = playerIndex;
+                Players[playerIndex].TotalVictoryPoints += 2;
+            }
+        }
         public bool BuyDevelopmentCard(Player player)
         {
             if (GamePhase != "Normal")
@@ -346,6 +418,11 @@ namespace catan
             player.Sheep -= 1;
             player.Wheat -= 1;
 
+
+            if(card.CardType == "Knight")
+            {
+                KnightsPlayed[CurrentPlayerIndex]++;
+            }
             card.BoughtThisTurn = true;
             player.DevelopmentCards.Add(card);
             return true;
