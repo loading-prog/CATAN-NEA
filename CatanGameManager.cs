@@ -313,6 +313,38 @@ namespace catan
             player.TotalVictoryPoints += 1;
             return true;
         }
+
+        public bool BuyDevelopmentCard(Player player)
+        {
+            if (GamePhase != "Normal")
+            {
+                return false;
+            }
+            if (player != Players[CurrentPlayerIndex])
+            {
+                return false;
+            }
+            if (player.Ore < 1 || player.Sheep <1 || player.Wheat < 1)
+            {
+                return false;
+            }
+            if(DevelopmentDeck.Cards.Count == 0)
+            {
+                return false;
+            }
+            DevelopmentCard? card = DevelopmenDeck.DrawCard();
+
+            if(Card == null)
+            {
+                return false;
+            }
+            player.Ore -=1;
+            player.Sheep -= 1;
+            player.Wheat -= 1;
+
+            player.DevelopmentCard.Add(card)
+            return true;
+        }
         public bool GameOver = false;
         public bool CheckWin(Player player)
         {
