@@ -819,10 +819,6 @@ namespace catan
                         canPlaceSettlement = false;
                     }
                 }
-                else
-                {
-                    canPlaceSettlement = gameManager.CanPlaceSettlement(hoveredPoint);
-                }
                 if (hoveredPoint.Owner == null && canPlaceSettlement == true)
                 {
                     Point[] houseShape =
