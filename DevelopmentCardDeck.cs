@@ -24,13 +24,13 @@ namespace catan
       Cards.Add(new DevelopmentCard("Palace", "VictoryPoint", 1));
       Cards.Add(new DevelopmentCard("University", "VictoryPoint", 1));
 
-      Shuffled();
+      Shuffle();
     }
 
     public void Shuffle ()
     {
       Random random = new Random();
-      for (int i = Card.Count -1; i >0; i++)
+      for (int i = Cards.Count - 1; i >0; i++)
       {
         int randomIndex = random.Next(i + 1);
         DevelopmentCard temp = Cards[i];
@@ -39,7 +39,7 @@ namespace catan
       }
     }
 
-    public DevelopmentCard? DrawCard();
+    public DevelopmentCard? DrawCard()
     {
       if(Cards.Count == 0)
       {
