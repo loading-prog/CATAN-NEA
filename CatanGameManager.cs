@@ -25,6 +25,8 @@ namespace catan
         public bool HasPlayedDevelopmentCard = false;
         public int[] KnightsPlayed = new int[3];
         public int LargestArmyPlayerIndex = -1;
+        public int FreeRoadsRemaining = 0;
+        public int FreeResourcesRemaining = 0;
         public CatanGameManager()
         {
 
@@ -85,10 +87,6 @@ namespace catan
                 return;
             }
             
-            CurrentPlayerIndex++;
-            HasRolledDice = false;
-            HasPlayedDevelopmentCard = false; 
-            
             Player currentPlayer = Players[CurrentPlayerIndex];
             foreach(DevelopmentCard card in currentPlayer.DevelopmentCards)
             {
@@ -98,6 +96,7 @@ namespace catan
             CurrentPlayerIndex++;
             HasRolledDice = false;
             HasPlayedDevelopmentCard = false;
+            FreeRoadsRemaining = 0;
             
             if(CurrentPlayerIndex >= Players.Count)
             {
@@ -297,12 +296,19 @@ namespace catan
                {
                    return false;
                }
-            if(player.Brick < 1 || player.Wood < 1)
+            if (FreeRoadsRemaining > 0)
             {
-                return false;
+                FreeRoadsRemaining--;
             }
-            player.Brick -= 1;
-            player.Wood -= 1;
+            else
+            {
+                if(player.Brick < 1 || player.Wood < 1)
+                {
+                    return false;
+                }
+                player.Brick -= 1;
+                player.Wood -= 1;
+            }
             edgeClicked.RoadOwner = player;
             return true;
         }
@@ -331,6 +337,10 @@ namespace catan
         public bool CanPlayDevelopmentCard(Player player,DevelopmentCard card)
         {
             if (GamePhase != "Normal")
+            {
+                return false;
+            }
+            if (WaitingForTheif == true)
             {
                 return false;
             }
@@ -370,13 +380,39 @@ namespace catan
             {
                 KnightsPlayed[CurrentPlayerIndex]++;
                 CheckLargestArmy();
+                WaitForTheif = true;
             }
-            
+            if (card.CardName == "Road Building")
+            {
+                FreeRoadsRemaining = 2;
+            }
+            if (card.CardName == "Year of Plenty")
+            {
+                FreeResourcesRemaining = 2;
+            }
             HasPlayedDevelopmentCard = true;
             player.DevelopmentCards.Remove(card);
             return true;
         }
+        public bool ClaimFreeResources( Player player, string resource)
+        {
+            if (player != Players[CurrentPlayerIndex])
+            {
+                return false;
+            }
+            if (FreeResourcesRemaining == 0)
+            {
+                return false;
+            }
+            if( resource != "Brick" || resource != "Wood" || resource != "Sheep" || resource != "Wheat" || rescource != "Ore")
+            {
+                return false;
+            }
 
+            player.AddResource(resource, 1);
+            FreeResourcesRemaining--;
+            return true;
+        }
         public void CheckLargestArmy()
         {
             int playerIndex = CurrentPlayerIndex;
@@ -431,6 +467,10 @@ namespace catan
             
             card.BoughtThisTurn = true;
             player.DevelopmentCards.Add(card);
+            if(card.CardType == "VictoryPoint")
+            {
+                player.TotalVictoryPoints += card.VictoryPoints;
+            }
             return true;
         }
         public bool GameOver = false;
