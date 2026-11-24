@@ -30,7 +30,7 @@ namespace catan
     public void Shuffle ()
     {
       Random random = new Random();
-      for (int i = Cards.Count - 1; i >0; i++)
+      for (int i = Cards.Count - 1; i >0; i--)
       {
         int randomIndex = random.Next(i + 1);
         DevelopmentCard temp = Cards[i];

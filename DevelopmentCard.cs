@@ -2,7 +2,7 @@ using System;
 
 namespace catan 
 {
-  class DevelopmentCard
+  public class DevelopmentCard
   {
     public string Name { get; set;}
     public string CardType { get; set;}
