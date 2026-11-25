@@ -380,13 +380,13 @@ namespace catan
             {
                 KnightsPlayed[CurrentPlayerIndex]++;
                 CheckLargestArmy();
-                WaitForTheif = true;
+                WaitingForTheif = true;
             }
             if (card.CardName == "Road Building")
             {
                 FreeRoadsRemaining = 2;
             }
-            if (card.CardName == "Year of Plenty")
+            if (card.cardName == "Year of Plenty")
             {
                 FreeResourcesRemaining = 2;
             }
@@ -404,7 +404,7 @@ namespace catan
             {
                 return false;
             }
-            if( resource != "Brick" || resource != "Wood" || resource != "Sheep" || resource != "Wheat" || rescource != "Ore")
+            if( resource != "Brick" || resource != "Wood" || resource != "Sheep" || resource != "Wheat" || resource != "Ore")
             {
                 return false;
             }
