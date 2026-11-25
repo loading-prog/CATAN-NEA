@@ -27,6 +27,7 @@ namespace catan
         public int LargestArmyPlayerIndex = -1;
         public int FreeRoadsRemaining = 0;
         public int FreeResourcesRemaining = 0;
+        public bool WaitingForMonopoly = false;
         public CatanGameManager()
         {
 
@@ -79,6 +80,14 @@ namespace catan
                    return;
             }
             if(WaitingForTheif == true)
+            {
+                return;
+            }
+            if (FreeResourcesRemaining > 0)
+            {
+                return;
+            }
+            if (WaitingForMonopoly == true)
             {
                 return;
             }
@@ -382,13 +391,18 @@ namespace catan
                 CheckLargestArmy();
                 WaitingForTheif = true;
             }
-            if (card.CardName == "Road Building")
+            if (card.Name == "Road Building")
             {
                 FreeRoadsRemaining = 2;
             }
-            if (card.cardName == "Year of Plenty")
+            
+            if (card.Name == "Year of Plenty")
             {
                 FreeResourcesRemaining = 2;
+            }
+            if (card.Name == "Monopoly")
+            {
+                WaitingForMonopoly =     true;
             }
             HasPlayedDevelopmentCard = true;
             player.DevelopmentCards.Remove(card);
@@ -411,6 +425,55 @@ namespace catan
 
             player.AddResource(resource, 1);
             FreeResourcesRemaining--;
+            return true;
+        }
+        public bool ClaimMonopoly(Player player, string resource)
+        {
+            if (player != Players[CurrentPlayerIndex])
+            {
+                return false;
+            }
+            if (WaitingForMonopoly == false)
+            {
+                return false;
+            }
+            if (resource != "Brick" && resource != "Wood" && resource != "Sheep" && resource != "Wheat" && resource != "Ore")
+            {
+                return false;
+            }
+            foreach(Player otherPlayer in Players)
+            {
+                if (otherPlayer != player)
+                {
+                    if (resource == "Brick")
+                    {
+                        player.Brick += otherPlayer.Brick;
+                        otherPlayer.Brick = 0;
+                    }
+                    if (resource == "Wood")
+                    {
+                        player.Wood += otherPlayer.Wood;
+                        otherPlayer.Wood = 0;
+                    }
+                    if (resource == "Sheep")
+                    {
+                        player.Sheep += otherPlayer.Sheep;
+                        otherPlayer.Sheep = 0;
+                    }
+                    if (resource == "Wheat")
+                    {
+
+                        player.Wheat += otherPlayer.Wheat;
+                        otherPlayer.Wheat = 0;
+                    }
+                    if (resource == "Ore")
+                    {
+                        player.Ore += otherPlayer.Ore;
+                        otherPlayer.Ore = 0;
+                    }
+                }
+            }
+            WaitingForMonopoly = false;
             return true;
         }
         public void CheckLargestArmy()
@@ -438,6 +501,10 @@ namespace catan
             if (GamePhase != "Normal")
             {
                 return false;
+            }
+            if (WaitingForTheif == true || WaitingForMonopoly == true || FreeResourcesRemaining > 0)
+            {
+                return false; 
             }
             if (HasRolledDice == false)
             {
