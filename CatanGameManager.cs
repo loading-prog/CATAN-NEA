@@ -418,7 +418,7 @@ namespace catan
             {
                 return false;
             }
-            if( resource != "Brick" || resource != "Wood" || resource != "Sheep" || resource != "Wheat" || resource != "Ore")
+            if( resource != "Brick" && resource != "Wood" && resource != "Sheep" && resource != "Wheat" && resource != "Ore")
             {
                 return false;
             }
